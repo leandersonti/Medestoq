@@ -1,0 +1,201 @@
+body {
+  padding-top: 5rem;
+}
+
+.footer {
+  position: relative;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background-color: #748da7;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.navbar-nav {
+	padding-left: 40px;
+}
+	
+.login-form
+{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.login-form .row
+{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+img.topmnu{
+	position: absolute;
+    z-index: -1;
+    top: 2px;
+}
+
+/* LOADING */
+.wrapper {
+    /* Size and position */
+	font-size: 18px; /* 1em */
+    width: 9em;
+	height: 9em;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+
+    /* Styles */
+	border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1em dashed rgba(138,189,195,0.5);
+    box-shadow: 
+        inset 0 0 2em rgba(255,255,255,0.3),
+        0 0 0 0.7em rgba(255,255,255,0.3);
+    animation: rota 3.5s linear infinite;
+
+    /* Font styles */
+    font-family: 'Racing Sans One', sans-serif;
+    
+    color: #444;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 .04em rgba(255,255,255,0.9);
+    line-height: 6em;
+}
+
+.wrapper:before,
+.wrapper:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: inherit;
+    box-shadow: inset 0 0 2em rgba(255,255,255,0.3);
+    border: 1em dashed;
+}
+
+.wrapper:before {
+    border-color: rgba(138,189,195,0.2);
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+
+.wrapper:after {
+	border-color: rgba(138,189,195,0.4);
+    top: 1em; right: 1em; bottom: 1em; left: 1em; 
+}
+
+.wrapper .inner {
+    width: 100%;
+    height: 100%;
+    animation: rota 3.5s linear reverse infinite;
+}
+
+.wrapper span {
+    display: inline-block;
+    animation: placeholder 1.5s ease-out infinite;
+}
+
+.wrapper span:nth-child(1)  { animation-name: loading-1;  }
+.wrapper span:nth-child(2)  { animation-name: loading-2;  }
+.wrapper span:nth-child(3)  { animation-name: loading-3;  }
+.wrapper span:nth-child(4)  { animation-name: loading-4;  }
+.wrapper span:nth-child(5)  { animation-name: loading-5;  }
+.wrapper span:nth-child(6)  { animation-name: loading-6;  }
+.wrapper span:nth-child(7)  { animation-name: loading-7;  }
+
+@keyframes rota {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes loading-1 {
+    14.28% { opacity: 0.3; }
+}
+
+@keyframes loading-2 {
+    28.57% { opacity: 0.3; }
+}
+
+@keyframes loading-3 {
+    42.86% { opacity: 0.3; }
+}
+
+@keyframes loading-4 {
+    57.14% { opacity: 0.3; }
+}
+
+@keyframes loading-5 {
+    71.43% { opacity: 0.3; }
+}
+
+@keyframes loading-6 {
+    85.71% { opacity: 0.3; }
+}
+
+@keyframes loading-7 {
+    100% { opacity: 0.3; }
+}
+/* FIM LOADING */
+
+/* STEP PROGRESS BAR */
+.progressbar {
+      counter-reset: step;
+  }
+  .progressbar li {
+      list-style-type: none;
+      width: 25%;
+      float: left;
+      font-size: 12px;
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+      color: #7d7d7d;
+  }
+  .progressbar li:before {
+      width: 30px;
+      height: 30px;
+      content: counter(step);
+      counter-increment: step;
+      line-height: 30px;
+      border: 2px solid #7d7d7d;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+      background-color: white;
+  }
+  .progressbar li:after {
+      width: 100%;
+      height: 2px;
+      content: '';
+      position: absolute;
+      background-color: #7d7d7d;
+      top: 15px;
+      left: -50%;
+      z-index: -1;
+  }
+  .progressbar li:first-child:after {
+      content: none;
+  }
+  .progressbar li.active {
+      color: green;
+  }
+  .progressbar li.active:before {
+      content: url("../images/tick.png");
+      border-color: #55b776;
+  }
+  .progressbar li.active + li:after {
+      background-color: #55b776;   
+  } 
+  /* FIM STEP PROGRESS BAR */
+  
