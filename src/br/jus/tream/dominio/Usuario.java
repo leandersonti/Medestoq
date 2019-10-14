@@ -9,45 +9,41 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="usuarios")
+@Table(name="asweb2014.vw_srh_lotacao")
 public class Usuario implements Serializable{
 
 	@Id
-	@Column(name = "titulo_eleitor")
+	@Column(name = "num_tit_ele")
 	private String tituloEleitor;
+	
+	@Column(name = "nom")
 	private String nome;
-	private int ativo;
 	
-	private int adm;
+	@Column(name = "sigla_unid_tse")
+	private String sigla;
 	
-	private int zona;
-		
+	@Column(name = "e_mail")
+	private String email;
+	
 	public Usuario() {		
 	}
 
-	public Usuario(String tituloEleitor, int ativo, String nome, int admin, int zona) {
+	public Usuario(String tituloEleitor, String nome, String sigla, String email) {
 		super();
 		this.tituloEleitor = tituloEleitor;
-		this.ativo = ativo;
 		this.nome = nome;
-		this.adm = admin;
-		this.zona = zona;
+		this.sigla = sigla;
+		this.email = email;
 	}
 
-	public Usuario(String tituloEleitor, String nome) {
-		super();
-		this.tituloEleitor = tituloEleitor;
-		this.nome = nome;
-	}
-	
 	public String getTituloEleitor() {
 		return tituloEleitor;
 	}
-	
+
 	public void setTituloEleitor(String tituloEleitor) {
 		this.tituloEleitor = tituloEleitor;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -56,28 +52,20 @@ public class Usuario implements Serializable{
 		this.nome = nome;
 	}
 
-	public int getAtivo() {
-		return ativo;
+	public String getSigla() {
+		return sigla;
 	}
 
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
-	public int getAdmin() {
-		return adm;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAdmin(int admin) {
-		this.adm = admin;
-	}
-
-	public int getZona() {
-		return zona;
-	}
-
-	public void setZona(int zona) {
-		this.zona = zona;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
 		Usuario usuario = new Usuario();
 		try {
-			TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.ativo=1 AND lpad(u.tituloEleitor,12,0)=lpad(?1,12,0)", 
+			TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE lpad(u.tituloEleitor,12,0)=lpad(?1,12,0)", 
 		    		   Usuario.class);
 			usuario = query.setParameter(1, tituloEleitor).getSingleResult(); 
 		} catch (Exception e) {
@@ -67,42 +67,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		  }
 		return lista;	
 	} 
-	
-	@Override
-	public int adicionar (Usuario dateEleicao) throws Exception{
-		int ret = 0;
-		try {
-			dao.adicionar(dateEleicao);
-			ret =1;
-		} catch (Exception e) {
-			//e.printStackTrace();
-		}
-		return ret;
-	}
-	
-	@Override
-	public int atualizar (Usuario dateEleicao) throws Exception{
-		int ret = 0;
-		try {
-			dao.atualizar(dateEleicao);
-			ret =1;
-		} catch (Exception e) {
-			//e.printStackTrace();
-		}
-		return ret;
-	}
-	
-	@Override
-	public int remover (Usuario dateEleicao) throws Exception{
-		int ret = 0;
-		try {
-			dao.remover(dateEleicao);
-			ret =1;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ret;
-	}
 	
 
 	    
