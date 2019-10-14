@@ -34,16 +34,16 @@ public class GrupoProduto implements Serializable {
 	private Integer id;
 
 	@Column(name = "txGrupoProduto")
-	private String grupoProduto;
+	private String descricao;
 
 	public GrupoProduto() {
 		
 	}
 	
-	public GrupoProduto(Integer id, String grupoProduto) {
+	public GrupoProduto(Integer id, String descricao) {
 		super();
 		this.id = id;
-		this.grupoProduto = grupoProduto;
+		this.descricao = descricao;
 	}
 
 	public Integer getId() {
@@ -54,13 +54,15 @@ public class GrupoProduto implements Serializable {
 		this.id = id;
 	}
 
-	public String getGrupoProduto() {
-		return grupoProduto;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setGrupoProduto(String grupoProduto) {
-		this.grupoProduto = grupoProduto;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
+
+	
 
 	
 }
