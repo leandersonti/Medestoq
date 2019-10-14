@@ -33,7 +33,7 @@ public class Movimento implements Serializable, Comparable<Movimento> {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@SequenceGenerator(name = "TB_MOVIMENTO_SEQ", sequenceName = "TB_MOVIMENTO_SEQ")
+	@SequenceGenerator(name = "TB_MOVIMENTO_SEQ", sequenceName = "TB_MOVIMENTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_MOVIMENTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idMovimento", unique = true, nullable = false)
 	private Long idMovimento;

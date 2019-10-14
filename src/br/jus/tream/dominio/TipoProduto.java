@@ -26,7 +26,7 @@ public class TipoProduto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@SequenceGenerator(name = "TB_TIPOPRODUTO_SEQ", sequenceName = "TB_TIPOPRODUTO_SEQ")
+	@SequenceGenerator(name = "TB_TIPOPRODUTO_SEQ", sequenceName = "TB_TIPOPRODUTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_TIPOPRODUTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idTipoProduto", unique = true, nullable = false)
 	private Long idTipoProduto;

@@ -27,7 +27,7 @@ public class GrupoProduto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@SequenceGenerator(name = "TB_GRUPOPRODUTO_SEQ", sequenceName = "TB_GRUPOPRODUTO_SEQ")
+	@SequenceGenerator(name = "TB_GRUPOPRODUTO_SEQ", sequenceName = "TB_GRUPOPRODUTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_GRUPOPRODUTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idGrupoProduto", unique = true, nullable = false)
 	private Long idGrupoProduto;

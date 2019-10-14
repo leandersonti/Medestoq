@@ -26,7 +26,7 @@ public class UnidadeMedida implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@SequenceGenerator(name = "TB_UNIDADEMEDIDA_SEQ", sequenceName = "TB_UNIDADEMEDIDA_SEQ")
+	@SequenceGenerator(name = "TB_UNIDADEMEDIDA_SEQ", sequenceName = "TB_UNIDADEMEDIDA_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_UNIDADEMEDIDA_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idUnidadeMedida", unique = true, nullable = false)
 	private Long idUnidadeMedida;

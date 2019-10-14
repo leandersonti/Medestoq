@@ -31,7 +31,7 @@ public class ItemMovimento implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@SequenceGenerator(name = "TB_ITEMMOVIMENTO_SEQ", sequenceName = "TB_ITEMMOVIMENTO_SEQ")
+	@SequenceGenerator(name = "TB_ITEMMOVIMENTO_SEQ", sequenceName = "TB_ITEMMOVIMENTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_ITEMMOVIMENTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idItemMovimento", unique = true, nullable = false)
 	private Long idItemMovimento;
