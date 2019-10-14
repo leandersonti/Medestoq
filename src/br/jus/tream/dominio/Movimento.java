@@ -16,8 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
-import com.sun.istack.internal.NotNull;
+import com.sun.istack.NotNull;
 /**
  *
  * @author Ederson
@@ -38,17 +37,21 @@ public class Movimento implements Serializable, Comparable<Movimento> {
 	@GeneratedValue(generator = "TB_MOVIMENTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idMovimento", unique = true, nullable = false)
 	private Long idMovimento;
+	
 	@Column(name = "isRecebimento")
 	@NotNull
 	private Boolean isRecebimento;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dtMovimento")
 	private Date dtMovimento;
+	
 	@Column(name = "txMotivo")
-
 	private String txMotivo;
+	
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "fkMovimento", fetch = FetchType.EAGER, orphanRemoval = true)
 	List<ItemMovimento> itens;
+		
 	public Long getIdMovimento() {
 		return idMovimento;
 	}

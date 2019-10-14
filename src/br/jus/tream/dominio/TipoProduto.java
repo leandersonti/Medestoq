@@ -14,8 +14,8 @@ import javax.persistence.Table;
  * 
  * @author Ederson
  * 
- * @Description Classe mamtm todos os registros de tipos de produtos,
- *              gerencivel pelo usurio.
+ * @Description Classe mamtm todos os registros de tipos de produtos, gerencivel
+ *              pelo usurio.
  * 
  */
 @Entity
@@ -30,18 +30,22 @@ public class TipoProduto implements Serializable {
 	@GeneratedValue(generator = "TB_TIPOPRODUTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idTipoProduto", unique = true, nullable = false)
 	private Long idTipoProduto;
-	@Column(name = "txTipoProduto")
 
+	@Column(name = "txTipoProduto")
 	private String txTipoProduto;
+
 	public Long getIdTipoProduto() {
 		return idTipoProduto;
 	}
+
 	public void setIdTipoProduto(Long idTipoProduto) {
 		this.idTipoProduto = idTipoProduto;
 	}
+
 	public String getTxTipoProduto() {
 		return txTipoProduto;
 	}
+
 	public void setTxTipoProduto(String txTipoProduto) {
 		this.txTipoProduto = txTipoProduto;
 	}

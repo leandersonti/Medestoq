@@ -9,23 +9,23 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="asweb2014.vw_srh_lotacao")
-public class Usuario implements Serializable{
+@Table(name = "asweb2014.vw_srh_lotacao")
+public class Usuario implements Serializable {
 
 	@Id
 	@Column(name = "num_tit_ele")
 	private String tituloEleitor;
-	
+
 	@Column(name = "nom")
 	private String nome;
-	
+
 	@Column(name = "sigla_unid_tse")
 	private String sigla;
-	
+
 	@Column(name = "e_mail")
 	private String email;
-	
-	public Usuario() {		
+
+	public Usuario() {
 	}
 
 	public Usuario(String tituloEleitor, String nome, String sigla, String email) {
@@ -92,5 +92,5 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }

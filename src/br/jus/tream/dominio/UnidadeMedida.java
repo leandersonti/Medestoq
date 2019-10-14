@@ -1,4 +1,5 @@
 package br.jus.tream.dominio;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 /**
  * 
  * @author Ederson
@@ -28,27 +30,33 @@ public class UnidadeMedida implements Serializable {
 	@GeneratedValue(generator = "TB_UNIDADEMEDIDA_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idUnidadeMedida", unique = true, nullable = false)
 	private Long idUnidadeMedida;
+
 	@Column(name = "txUnidadeMedida", unique = true)
-	
 	private String txUnidadeMedida;
+
 	@Column(name = "txSigla")
-	
 	private String txSigla;
+
 	public Long getIdUnidadeMedida() {
 		return idUnidadeMedida;
 	}
+
 	public void setIdUnidadeMedida(Long idUnidadeMedida) {
 		this.idUnidadeMedida = idUnidadeMedida;
 	}
+
 	public String getTxUnidadeMedida() {
 		return txUnidadeMedida;
 	}
+
 	public void setTxUnidadeMedida(String txUnidadeMedida) {
 		this.txUnidadeMedida = txUnidadeMedida;
 	}
+
 	public String getTxSigla() {
 		return txSigla;
 	}
+
 	public void setTxSigla(String txSigla) {
 		this.txSigla = txSigla;
 	}
