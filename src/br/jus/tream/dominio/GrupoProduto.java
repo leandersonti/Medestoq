@@ -31,25 +31,36 @@ public class GrupoProduto implements Serializable {
 	@GeneratedValue(generator = "TB_GRUPOPRODUTO_SEQ", strategy = GenerationType.AUTO)
 	
 	@Column(name = "idGrupoProduto", unique = true, nullable = false)
-	private Integer idGrupoProduto;
+	private Integer id;
 
 	@Column(name = "txGrupoProduto")
-	private String txGrupoProduto;
+	private String grupoProduto;
+
+	public GrupoProduto() {
+		
+	}
+	
+	public GrupoProduto(Integer id, String grupoProduto) {
+		super();
+		this.id = id;
+		this.grupoProduto = grupoProduto;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getGrupoProduto() {
+		return grupoProduto;
+	}
+
+	public void setGrupoProduto(String grupoProduto) {
+		this.grupoProduto = grupoProduto;
+	}
 
 	
-	public Integer getIdGrupoProduto() {
-		return idGrupoProduto;
-	}
-
-	public void setIdGrupoProduto(Integer idGrupoProduto) {
-		this.idGrupoProduto = idGrupoProduto;
-	}
-
-	public String getTxGrupoProduto() {
-		return txGrupoProduto;
-	}
-
-	public void setTxGrupoProduto(String txGrupoProduto) {
-		this.txGrupoProduto = txGrupoProduto;
-	}
 }

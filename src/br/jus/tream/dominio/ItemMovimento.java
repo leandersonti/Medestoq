@@ -26,49 +26,59 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_itemmovimento")
 public class ItemMovimento implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	@Id
-	@SequenceGenerator(name = "TB_ITEMMOVIMENTO_SEQ", sequenceName = "TB_ITEMMOVIMENTO_SEQ", allocationSize=1)
+	@SequenceGenerator(name = "TB_ITEMMOVIMENTO_SEQ", sequenceName = "TB_ITEMMOVIMENTO_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "TB_ITEMMOVIMENTO_SEQ", strategy = GenerationType.AUTO)
+
 	@Column(name = "idItemMovimento", unique = true, nullable = false)
-	private Integer idItemMovimento;
+	private Integer id;
 
 	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fkProduto", referencedColumnName = "idProduto", nullable = true)
-	private Produto fkProduto;
+	private Produto produto;
 
 	@ManyToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fkMovimento")
-	private Movimento fkMovimento;
+	private Movimento movimento;
 
 	@Column(name = "qtdItem")
 	private Integer qtdItem;
 
-	public Integer getIdItemMovimento() {
-		return idItemMovimento;
+	public ItemMovimento() {
 	}
 
-	public void setIdItemMovimento(Integer idItemMovimento) {
-		this.idItemMovimento = idItemMovimento;
+	public ItemMovimento(Integer id, Produto produto, Movimento movimento, Integer qtdItem) {
+		super();
+		this.id = id;
+		this.produto = produto;
+		this.movimento = movimento;
+		this.qtdItem = qtdItem;
 	}
 
-	public Produto getFkProduto() {
-		return fkProduto;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setFkProduto(Produto fkProduto) {
-		this.fkProduto = fkProduto;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Movimento getFkMovimento() {
-		return fkMovimento;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setFkMovimento(Movimento fkMovimento) {
-		this.fkMovimento = fkMovimento;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Movimento getMovimento() {
+		return movimento;
+	}
+
+	public void setMovimento(Movimento movimento) {
+		this.movimento = movimento;
 	}
 
 	public Integer getQtdItem() {
@@ -79,7 +89,4 @@ public class ItemMovimento implements Serializable {
 		this.qtdItem = qtdItem;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 }

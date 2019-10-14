@@ -27,20 +27,19 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tb_produto")
-public class Produto implements Serializable, Comparable<Produto> {
-	/**
-	 * 
-	 */
+public class Produto implements Serializable {
+	
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@SequenceGenerator(name = "TB_PRODUTO_SEQ", sequenceName = "TB_PRODUTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_PRODUTO_SEQ", strategy = GenerationType.AUTO)
 	
 	@Column(name = "idProduto", unique = true, nullable = false)
-	private Integer idProduto;
+	private Integer id;
 
 	@Column(name = "txProduto")
-	private String txProduto;
+	private String descricao;
 
 	@Column(name = "qtdEstoque")
 	private Integer qtdEstoque;
@@ -54,30 +53,46 @@ public class Produto implements Serializable, Comparable<Produto> {
 
 	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fkUnidadeMedida", referencedColumnName = "idUnidadeMedida", nullable = true)
-	private UnidadeMedida fkUnidadeMedida;
+	private UnidadeMedida unidadeMedida;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fkGrupoProduto", referencedColumnName = "idGrupoProduto", nullable = true)
-	private GrupoProduto fkGrupoProduto;
+	private GrupoProduto grupoProduto;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fkTipoProduto", referencedColumnName = "idTipoProduto", nullable = true)
-	private TipoProduto fkTipoProduto;
-
-	public Integer getIdProduto() {
-		return idProduto;
+	private TipoProduto tipoProduto;	
+	
+	public Produto() {	
 	}
 
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
+	public Produto(Integer id, String descricao, Integer qtdEstoque, Integer qtdMinima, Date dtValidade,
+			UnidadeMedida unidadeMedida, GrupoProduto grupoProduto, TipoProduto tipoProduto) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.qtdEstoque = qtdEstoque;
+		this.qtdMinima = qtdMinima;
+		this.dtValidade = dtValidade;
+		this.unidadeMedida = unidadeMedida;
+		this.grupoProduto = grupoProduto;
+		this.tipoProduto = tipoProduto;
 	}
 
-	public String getTxProduto() {
-		return txProduto;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setTxProduto(String txProduto) {
-		this.txProduto = txProduto;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Integer getQtdEstoque() {
@@ -104,49 +119,55 @@ public class Produto implements Serializable, Comparable<Produto> {
 		this.dtValidade = dtValidade;
 	}
 
-	public UnidadeMedida getFkUnidadeMedida() {
-		return fkUnidadeMedida;
+	public UnidadeMedida getUnidadeMedida() {
+		return unidadeMedida;
 	}
 
-	public void setFkUnidadeMedida(UnidadeMedida fkUnidadeMedida) {
-		this.fkUnidadeMedida = fkUnidadeMedida;
+	public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
+		this.unidadeMedida = unidadeMedida;
 	}
 
-	public GrupoProduto getFkGrupoProduto() {
-		return fkGrupoProduto;
+	public GrupoProduto getGrupoProduto() {
+		return grupoProduto;
 	}
 
-	public void setFkGrupoProduto(GrupoProduto fkGrupoProduto) {
-		this.fkGrupoProduto = fkGrupoProduto;
+	public void setGrupoProduto(GrupoProduto grupoProduto) {
+		this.grupoProduto = grupoProduto;
 	}
 
-	public TipoProduto getFkTipoProduto() {
-		return fkTipoProduto;
+	public TipoProduto getTipoProduto() {
+		return tipoProduto;
 	}
 
-	public void setFkTipoProduto(TipoProduto fkTipoProduto) {
-		this.fkTipoProduto = fkTipoProduto;
+	public void setTipoProduto(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
 	}
 
-	/**
-	 * Mtodo implicitamente utilizado ao solicitar o Collections.sort. Aqui a
-	 * informao chave para ordenao a data de validade do produto. Classes que
-	 * precisam compor uma tela de listagem e j iniciar com uma ordenao especfica
-	 * precisam implementar a interface Comparable.
-	 */
 	@Override
-	public int compareTo(Produto prod) {
-		if (this.dtValidade.after(prod.dtValidade)) {
-			return 1;
-		}
-		if (this.dtValidade.before(prod.dtValidade)) {
-			return -1;
-		}
-		return 0;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-
+	
+	
+	
 }

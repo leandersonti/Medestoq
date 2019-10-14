@@ -27,7 +27,7 @@ import com.sun.istack.NotNull;
  */
 @Entity
 @Table(name = "tb_movimento")
-public class Movimento implements Serializable, Comparable<Movimento> {
+public class Movimento implements Serializable {
 	/**
 	 * 
 	 */
@@ -35,8 +35,9 @@ public class Movimento implements Serializable, Comparable<Movimento> {
 	@Id
 	@SequenceGenerator(name = "TB_MOVIMENTO_SEQ", sequenceName = "TB_MOVIMENTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_MOVIMENTO_SEQ", strategy = GenerationType.AUTO)
+	
 	@Column(name = "idMovimento", unique = true, nullable = false)
-	private Integer idMovimento;
+	private Integer id;
 	
 	@Column(name = "isRecebimento")
 	@NotNull
@@ -47,58 +48,63 @@ public class Movimento implements Serializable, Comparable<Movimento> {
 	private Date dtMovimento;
 	
 	@Column(name = "txMotivo")
-	private String txMotivo;
+	private String motivo;
 	
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "fkMovimento", fetch = FetchType.EAGER, orphanRemoval = true)
 	List<ItemMovimento> itens;
-		
-	public Integer getIdMovimento() {
-		return idMovimento;
+	
+	public Movimento() {
+	
+	}	
+	
+	public Movimento(Integer id, Boolean isRecebimento, Date dtMovimento, String motivo, List<ItemMovimento> itens) {
+		super();
+		this.id = id;
+		this.isRecebimento = isRecebimento;
+		this.dtMovimento = dtMovimento;
+		this.motivo = motivo;
+		this.itens = itens;
 	}
-	public void setIdMovimento(Integer idMovimento) {
-		this.idMovimento = idMovimento;
+
+	public Integer getId() {
+		return id;
 	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Boolean getIsRecebimento() {
 		return isRecebimento;
 	}
+
 	public void setIsRecebimento(Boolean isRecebimento) {
 		this.isRecebimento = isRecebimento;
 	}
+
 	public Date getDtMovimento() {
-		return this.dtMovimento;
+		return dtMovimento;
 	}
+
 	public void setDtMovimento(Date dtMovimento) {
 		this.dtMovimento = dtMovimento;
 	}
-	public String getTxMotivo() {
-		return txMotivo;
+
+	public String getMotivo() {
+		return motivo;
 	}
-	public void setTxMotivo(String txMotivo) {
-		this.txMotivo = txMotivo;
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
 	public List<ItemMovimento> getItens() {
 		return itens;
 	}
+
 	public void setItens(List<ItemMovimento> itens) {
 		this.itens = itens;
 	}
-	/**
-	 * Método implicitamente utilizado ao solicitar o Collections.sort. Aqui a
-	 * informação chave para ordenação é a data de criação do movimento. Classes
-	 * que precisam compor uma tela de listagem e já iniciar com uma ordenação
-	 * específica precisam implementar a interface Comparable.
-	 */
-	@Override
-	public int compareTo(Movimento mov) {
-		if (this.dtMovimento.after(mov.dtMovimento)) {
-			return -1;
-		}
-		if (this.dtMovimento.before(mov.dtMovimento)) {
-			return 1;
-		}
-		return 0;
-	}
+		
+	
 }

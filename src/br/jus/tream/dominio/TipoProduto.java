@@ -28,25 +28,62 @@ public class TipoProduto implements Serializable {
 	@Id
 	@SequenceGenerator(name = "TB_TIPOPRODUTO_SEQ", sequenceName = "TB_TIPOPRODUTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_TIPOPRODUTO_SEQ", strategy = GenerationType.AUTO)
+	
 	@Column(name = "idTipoProduto", unique = true, nullable = false)
-	private Integer idTipoProduto;
+	private Integer id;
 
 	@Column(name = "txTipoProduto")
-	private String txTipoProduto;
-
-	public Integer getIdTipoProduto() {
-		return idTipoProduto;
+	private String descricao;
+	
+	public TipoProduto() {		
 	}
 
-	public void setIdTipoProduto(Integer idTipoProduto) {
-		this.idTipoProduto = idTipoProduto;
+	public TipoProduto(Integer id, String descricao) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
 	}
 
-	public String getTxTipoProduto() {
-		return txTipoProduto;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setTxTipoProduto(String txTipoProduto) {
-		this.txTipoProduto = txTipoProduto;
+	public void setId(Integer id) {
+		this.id = id;
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TipoProduto other = (TipoProduto) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	
 }
