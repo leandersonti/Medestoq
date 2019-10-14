@@ -6,22 +6,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import br.jus.tream.dominio.TipoProduto;
+import br.jus.tream.dominio.UnidadeMedida;
 
-public class TipoProdutoDAOImpl implements TipoProdutoDAO {
-	private DAO<TipoProduto> dao = new DAO<TipoProduto>(TipoProduto.class);
+public class UnidadeMedidaDAOImpl implements UnidadeMedidaDAO {
+	private DAO<UnidadeMedida> dao = new DAO<UnidadeMedida>(UnidadeMedida.class);
 
-	static TipoProdutoDAO db;
+	static UnidadeMedidaDAO db;
 
-	public static TipoProdutoDAO getInstance() {
+	public static UnidadeMedidaDAO getInstance() {
 		if (db == null) {
-			db = new TipoProdutoDAOImpl();
+			db = new UnidadeMedidaDAOImpl();
 		}
 		return db;
 	}
 
 	@Override
-	public List<TipoProduto> listar() throws Exception {
-		List<TipoProduto> lista = null;
+	public List<UnidadeMedida> listar() throws Exception {
+		List<UnidadeMedida> lista = null;
 		try {
 			lista = dao.listarTodos();
 		} catch (Exception e) {
@@ -31,26 +32,26 @@ public class TipoProdutoDAOImpl implements TipoProdutoDAO {
 	}
 
 	@Override
-	public TipoProduto getBean(int id) throws Exception {
+	public UnidadeMedida getBean(int id) throws Exception {
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
-		TipoProduto TipoProduto = new TipoProduto();
-		try {						
-			TipoProduto = dao.getBean(id); 	
+		UnidadeMedida unidadeMedida = new UnidadeMedida();
+		try {			
+			unidadeMedida = dao.getBean(id); 		
 		} catch (Exception e) {
 			em.close();
 			e.printStackTrace();
 		} finally {
 			em.close();
 		}
-		return TipoProduto;
+		return unidadeMedida;
 	}
 	
 
 	@Override
-	public int adicionar(TipoProduto tipoProduto) throws Exception {
+	public int adicionar(UnidadeMedida unidadeMedida) throws Exception {
 		int ret = 0;
 		try {
-			dao.adicionar(tipoProduto);
+			dao.adicionar(unidadeMedida);
 			ret = 1;
 		} catch (Exception e) {
 			// e.printStackTrace();
@@ -59,10 +60,10 @@ public class TipoProdutoDAOImpl implements TipoProdutoDAO {
 	}
 
 	@Override
-	public int atualizar(TipoProduto tipoProduto) throws Exception {
+	public int atualizar(UnidadeMedida unidadeMedida) throws Exception {
 		int ret = 0;
 		try {
-			dao.atualizar(tipoProduto);
+			dao.atualizar(unidadeMedida);
 			ret = 1;
 		} catch (Exception e) {
 			// e.printStackTrace();
@@ -71,10 +72,10 @@ public class TipoProdutoDAOImpl implements TipoProdutoDAO {
 	}
 
 	@Override
-	public int remover(TipoProduto tipoProduto) throws Exception {
+	public int remover(UnidadeMedida unidadeMedida) throws Exception {
 		int ret = 0;
 		try {
-			dao.remover(tipoProduto);
+			dao.remover(unidadeMedida);
 			ret = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,16 +84,16 @@ public class TipoProdutoDAOImpl implements TipoProdutoDAO {
 	}
 
 	public static void main(String[] args) throws Exception {
-		TipoProdutoDAO dao = TipoProdutoDAOImpl.getInstance();
-		TipoProduto tipoProduto = new TipoProduto();			
+		UnidadeMedidaDAO dao = UnidadeMedidaDAOImpl.getInstance();
+		UnidadeMedida unidadeMedida = new UnidadeMedida();			
 		
 		//tipoProduto.setDescricao("teste sistema");
 		//int ret = dao.adicionar(tipoProduto);
 		//System.out.println("==="+ret);
 		
-		tipoProduto = dao.getBean(1);
+		unidadeMedida = dao.getBean(1);
 		
-		System.out.println("==="+tipoProduto.getDescricao());
+		System.out.println("==="+unidadeMedida.getDescricao());
 		
 		/*
 		 * for (TipoProduto s : dao.listar()) { System.out.println("===" +

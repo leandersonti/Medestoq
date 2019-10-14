@@ -10,11 +10,11 @@ public interface TipoProdutoDAO {
 		
 	public TipoProduto getBean(int id) throws Exception;
 	
-	public int adicionar (TipoProduto usuario) throws Exception;
+	public int adicionar (TipoProduto tipoProduto) throws Exception;
 	
-	public int atualizar (TipoProduto usuario) throws Exception;
+	public int atualizar (TipoProduto tipoProduto) throws Exception;
 	
-	public int remover (TipoProduto usuario) throws Exception;
+	public int remover (TipoProduto tipoProduto) throws Exception;
 	
 	
 }  
