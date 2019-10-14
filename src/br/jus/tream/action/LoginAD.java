@@ -69,8 +69,8 @@ public class LoginAD {
 				login.setNome(usuario.getNome());
 				login.setFirstName(usuario.getNome());
 				login.setTitulo(titulo);
-				login.setAdmin(usuario.getAdmin());
-				login.setZona(usuario.getZona());
+				//login.setAdmin(usuario.getAdmin());
+				//login.setZona(usuario.getZona());
 				login.setIsAmbienteProducao(this.isAmbienteProducao());
 			}
 		} finally {
