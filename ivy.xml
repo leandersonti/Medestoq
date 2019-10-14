@@ -18,7 +18,7 @@
 			
 			<dependency org="org.apache.commons" name="commons-text" rev="1.8" transitive="false"/>
 			
-			
+			<dependency org="dom4j" name="dom4j" rev="1.6.1" transitive="false"/>
 			
 			<!--  
 			<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.12.1"/> 
