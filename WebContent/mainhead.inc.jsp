@@ -9,7 +9,7 @@
     <meta name="Description" content="Sistema de controle de ponto de transmiss„o" />
     <meta name="Keywords" content="ponto transmiss„o, TSAT, transmiss„o" />
     <meta name="author" content="STI/CDES Moacir Viana">
-    <title>Anaj…</title>
+    <title>MedEstoq</title>
     <link rel="SHORTCUT ICON" href="${pageContext.request.contextPath}/favicon.ico">
     <jsp:include page = "/css.inc.jsp" />
 </head>
