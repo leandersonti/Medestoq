@@ -3,6 +3,7 @@ package br.jus.tream.DAO;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.jus.tream.dominio.TipoProduto;
 
@@ -34,7 +35,9 @@ public class TipoProdutoDAOImpl implements TipoProdutoDAO {
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
 		TipoProduto TipoProduto = new TipoProduto();
 		try {			
-			dao.getBean(id);
+			TypedQuery<TipoProduto> query = em.createQuery("SELECT t FROM TipoProduto t WHERE t.id=?1", 
+					TipoProduto.class);
+			TipoProduto = query.setParameter(1, id).getSingleResult(); 
 		} catch (Exception e) {
 			em.close();
 			e.printStackTrace();
@@ -43,6 +46,7 @@ public class TipoProdutoDAOImpl implements TipoProdutoDAO {
 		}
 		return TipoProduto;
 	}
+	
 
 	@Override
 	public int adicionar(TipoProduto tipoProduto) throws Exception {
@@ -82,16 +86,20 @@ public class TipoProdutoDAOImpl implements TipoProdutoDAO {
 
 	public static void main(String[] args) throws Exception {
 		TipoProdutoDAO dao = TipoProdutoDAOImpl.getInstance();
-		//TipoProduto tipoProduto = new TipoProduto();			
+		TipoProduto tipoProduto = new TipoProduto();			
 		
 		//tipoProduto.setDescricao("teste sistema");
 		//int ret = dao.adicionar(tipoProduto);
 		//System.out.println("==="+ret);
-					
 		
-		 for (TipoProduto s : dao.listar()) { System.out.println("===" +
-		 s.getDescricao()); }
+		tipoProduto = dao.getBean(1);
 		
+		System.out.println("==="+tipoProduto.getDescricao());
+		
+		/*
+		 * for (TipoProduto s : dao.listar()) { System.out.println("===" +
+		 * s.getDescricao()); }
+		 */
 
 		System.out.println("Done!!");
 
