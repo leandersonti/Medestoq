@@ -10,17 +10,21 @@
 	<dependencies>
 	        
 
-	        <dependency org="org.apache.struts" name="struts2-core" rev="2.5.20" />
+	        <dependency org="org.apache.struts" name="struts2-core" rev="2.5.20" conf="*->default"/>
 			<dependency org="org.apache.struts" name="struts2-convention-plugin" rev="2.5.20"/>
 			<dependency org="org.apache.struts" name="struts2-json-plugin" rev="2.5.20" transitive="false"/>
 					  
 			<dependency org="org.hibernate" name="hibernate-core" rev="5.4.6.Final"/>
+			
+			<dependency org="org.apache.commons" name="commons-text" rev="1.8" transitive="false"/>
+			
+			
+			
 			<!--  
 			<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.12.1"/> 
 			
 			<dependency org="dom4j" name="dom4j" rev="1.6.1" transitive="false"/>
 			
-			<dependency org="org.apache.commons" name="commons-text" rev="1.8" transitive="false"/>
 			
 			-->
 			 
