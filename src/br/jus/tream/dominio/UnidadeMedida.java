@@ -29,7 +29,7 @@ public class UnidadeMedida implements Serializable {
 	@SequenceGenerator(name = "TB_UNIDADEMEDIDA_SEQ", sequenceName = "TB_UNIDADEMEDIDA_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_UNIDADEMEDIDA_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idUnidadeMedida", unique = true, nullable = false)
-	private Long idUnidadeMedida;
+	private Integer idUnidadeMedida;
 
 	@Column(name = "txUnidadeMedida", unique = true)
 	private String txUnidadeMedida;
@@ -37,11 +37,11 @@ public class UnidadeMedida implements Serializable {
 	@Column(name = "txSigla")
 	private String txSigla;
 
-	public Long getIdUnidadeMedida() {
+	public Integer getIdUnidadeMedida() {
 		return idUnidadeMedida;
 	}
 
-	public void setIdUnidadeMedida(Long idUnidadeMedida) {
+	public void setIdUnidadeMedida(Integer idUnidadeMedida) {
 		this.idUnidadeMedida = idUnidadeMedida;
 	}
 

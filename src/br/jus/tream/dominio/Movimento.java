@@ -36,7 +36,7 @@ public class Movimento implements Serializable, Comparable<Movimento> {
 	@SequenceGenerator(name = "TB_MOVIMENTO_SEQ", sequenceName = "TB_MOVIMENTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_MOVIMENTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idMovimento", unique = true, nullable = false)
-	private Long idMovimento;
+	private Integer idMovimento;
 	
 	@Column(name = "isRecebimento")
 	@NotNull
@@ -52,10 +52,10 @@ public class Movimento implements Serializable, Comparable<Movimento> {
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "fkMovimento", fetch = FetchType.EAGER, orphanRemoval = true)
 	List<ItemMovimento> itens;
 		
-	public Long getIdMovimento() {
+	public Integer getIdMovimento() {
 		return idMovimento;
 	}
-	public void setIdMovimento(Long idMovimento) {
+	public void setIdMovimento(Integer idMovimento) {
 		this.idMovimento = idMovimento;
 	}
 	public Boolean getIsRecebimento() {

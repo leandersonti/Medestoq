@@ -29,16 +29,16 @@ public class TipoProduto implements Serializable {
 	@SequenceGenerator(name = "TB_TIPOPRODUTO_SEQ", sequenceName = "TB_TIPOPRODUTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_TIPOPRODUTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idTipoProduto", unique = true, nullable = false)
-	private Long idTipoProduto;
+	private Integer idTipoProduto;
 
 	@Column(name = "txTipoProduto")
 	private String txTipoProduto;
 
-	public Long getIdTipoProduto() {
+	public Integer getIdTipoProduto() {
 		return idTipoProduto;
 	}
 
-	public void setIdTipoProduto(Long idTipoProduto) {
+	public void setIdTipoProduto(Integer idTipoProduto) {
 		this.idTipoProduto = idTipoProduto;
 	}
 

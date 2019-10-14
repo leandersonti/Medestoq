@@ -34,7 +34,7 @@ public class ItemMovimento implements Serializable {
 	@SequenceGenerator(name = "TB_ITEMMOVIMENTO_SEQ", sequenceName = "TB_ITEMMOVIMENTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_ITEMMOVIMENTO_SEQ", strategy = GenerationType.AUTO)
 	@Column(name = "idItemMovimento", unique = true, nullable = false)
-	private Long idItemMovimento;
+	private Integer idItemMovimento;
 
 	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fkProduto", referencedColumnName = "idProduto", nullable = true)
@@ -47,11 +47,11 @@ public class ItemMovimento implements Serializable {
 	@Column(name = "qtdItem")
 	private Integer qtdItem;
 
-	public Long getIdItemMovimento() {
+	public Integer getIdItemMovimento() {
 		return idItemMovimento;
 	}
 
-	public void setIdItemMovimento(Long idItemMovimento) {
+	public void setIdItemMovimento(Integer idItemMovimento) {
 		this.idItemMovimento = idItemMovimento;
 	}
 

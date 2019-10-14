@@ -37,7 +37,7 @@ public class Produto implements Serializable, Comparable<Produto> {
 	@GeneratedValue(generator = "TB_PRODUTO_SEQ", strategy = GenerationType.AUTO)
 	
 	@Column(name = "idProduto", unique = true, nullable = false)
-	private Long idProduto;
+	private Integer idProduto;
 
 	@Column(name = "txProduto")
 	private String txProduto;
@@ -64,11 +64,11 @@ public class Produto implements Serializable, Comparable<Produto> {
 	@JoinColumn(name = "fkTipoProduto", referencedColumnName = "idTipoProduto", nullable = true)
 	private TipoProduto fkTipoProduto;
 
-	public Long getIdProduto() {
+	public Integer getIdProduto() {
 		return idProduto;
 	}
 
-	public void setIdProduto(Long idProduto) {
+	public void setIdProduto(Integer idProduto) {
 		this.idProduto = idProduto;
 	}
 

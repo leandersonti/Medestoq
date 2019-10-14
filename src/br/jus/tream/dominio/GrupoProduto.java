@@ -29,17 +29,19 @@ public class GrupoProduto implements Serializable {
 	@Id
 	@SequenceGenerator(name = "TB_GRUPOPRODUTO_SEQ", sequenceName = "TB_GRUPOPRODUTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_GRUPOPRODUTO_SEQ", strategy = GenerationType.AUTO)
+	
 	@Column(name = "idGrupoProduto", unique = true, nullable = false)
-	private Long idGrupoProduto;
+	private Integer idGrupoProduto;
 
 	@Column(name = "txGrupoProduto")
 	private String txGrupoProduto;
 
-	public Long getIdGrupoProduto() {
+	
+	public Integer getIdGrupoProduto() {
 		return idGrupoProduto;
 	}
 
-	public void setIdGrupoProduto(Long idGrupoProduto) {
+	public void setIdGrupoProduto(Integer idGrupoProduto) {
 		this.idGrupoProduto = idGrupoProduto;
 	}
 
