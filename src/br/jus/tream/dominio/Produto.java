@@ -33,8 +33,9 @@ public class Produto implements Serializable, Comparable<Produto> {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@SequenceGenerator(name = "TB_PRODUTO_SEQ", sequenceName = "TB_PRODUTO_SEQ")
+	@SequenceGenerator(name = "TB_PRODUTO_SEQ", sequenceName = "TB_PRODUTO_SEQ", allocationSize=1)
 	@GeneratedValue(generator = "TB_PRODUTO_SEQ", strategy = GenerationType.AUTO)
+	
 	@Column(name = "idProduto", unique = true, nullable = false)
 	private Long idProduto;
 
