@@ -50,7 +50,7 @@ public class Movimento implements Serializable {
 	@Column(name = "txMotivo")
 	private String motivo;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "fkMovimento", fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "movimento", fetch = FetchType.EAGER, orphanRemoval = true)
 	List<ItemMovimento> itens;
 	
 	public Movimento() {
