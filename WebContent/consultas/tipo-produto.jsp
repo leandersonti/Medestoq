@@ -20,18 +20,17 @@
 		</tr>
 	</thead>
 	<tbody>
-	<s:iterator value="lstEleicao">
+	<s:iterator value="LstTipoProduto">
 		<tr id="tr${id}">
-		    <td><s:property value="%{getText('format.date',{dataEleicao})}"/></td>
+			<td><s:property value="id"/></td>
 			<td><s:property value="descricao"/></td>
 			
 			<td>  		    
-				    <a href="frmEditar?eleicao.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
+				    <a href="frmEditar?tipoproduto.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 				    </a>
 					
 					<a href="#" id="excluir${id}" class="btn btn-sm btn-danger" role="button" data-record-id="${id}" 
-					     data-record-data="<s:property value="%{getText('format.date',{dataEleicao})}"/>"
 					     data-record-descricao="${descricao}">
 					  		<i class="fa fa-trash-o" aria-hidden="true"></i>
 				    </a>
@@ -40,15 +39,12 @@
 		</s:iterator>
 	 </tbody>	
 	</table>
-	
-    
+
 	  </div>
 	</div>
 </div>
 
-   
-
-<jsp:include page = "/javascripts.jsp" />
-<script src="${pageContext.request.contextPath}/js/eleicao.js" charset="utf-8"></script>
+<jsp:include page="/javascripts.jsp" />
+<script src="${pageContext.request.contextPath}/js/tipo-produto.js" charset="utf-8"></script>
 
 <jsp:include page = "/mainfooter.inc.jsp" />
