@@ -13,9 +13,9 @@
 		</div>
  
  
-   <footer class="footer">
+   <footer class="footer bg-dark text-white">
       <div class="container">
-         <span class="text-light">Controle de Estoque da COMED
+         <span class="text-white">Controle de Estoque da COMED
       	<%
 	     BeanLogin s = (BeanLogin)session.getAttribute("login");
 		  try{

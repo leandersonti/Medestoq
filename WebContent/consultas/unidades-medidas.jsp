@@ -12,26 +12,25 @@
     <table id="tbeleicao" class="table table-sm table-hover">
 	<thead>
 		<tr>
-			<th width="8%">Sigla</th>
-			<th width="28%">Descrição</th>
+			<th width="3%">Sigla</th>
+			<th width="15%">Descrição</th>
 
-			<th width="15%"><a href="frmCad" class="btn btn-sm btn-primary" role="button">Novo</a>
+			<th width="2%"><a href="frmCad" class="btn btn-sm btn-primary" role="button">Novo</a>
 		    </th>
 		</tr>
 	</thead>
 	<tbody>
-	<s:iterator value="lstEleicao">
+	<s:iterator value="lstUnidadeMedida">
 		<tr id="tr${id}">
-		    <td><s:property value="%{getText('format.date',{dataEleicao})}"/></td>
+		    <td><s:property value="sigla"/></td>
 			<td><s:property value="descricao"/></td>
 		
 			<td>  		    
-				    <a href="frmEditar?eleicao.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
+				    <a href="frmEditar?und.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 				    </a>
 					
 					<a href="#" id="excluir${id}" class="btn btn-sm btn-danger" role="button" data-record-id="${id}" 
-					     data-record-data="<s:property value="%{getText('format.date',{dataEleicao})}"/>"
 					     data-record-descricao="${descricao}">
 					  		<i class="fa fa-trash-o" aria-hidden="true"></i>
 				    </a>
@@ -50,5 +49,34 @@
 
 <jsp:include page = "/javascripts.jsp" />
 <script src="${pageContext.request.contextPath}/js/eleicao.js" charset="utf-8"></script>
-
+<script type="text/javascript">
+	$( "[id*='excluir']" ).click(function(event) {
+		var data = $(event.delegateTarget).data();
+		var id = data.recordId; 
+		var descricao = data.recordDescricao;
+		console.log("==="+id);
+		swal({
+			  title: 'Excluir?',
+			  text: "Deseja excluir esse registro? (" + descricao + ")",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: 'Sim excluir!'
+			}).then((result) => {
+			  if (result) {			    
+			       $.getJSON({
+					  url: "remover?und.id="+id
+				   }).done(function( data ) {
+				    	  if (data.ret==1){
+				    		  $('#tr'+id).fadeOut(); 
+				    		  swal("Remover", data.mensagem, "success");
+				    	  }
+				    	  else
+				    		  swal("Remover",  data.mensagem, "error");
+					}).fail(function() {
+						swal("Remover", "Ocorreu um erro ao remover", "error");
+					});
+			   }
+			})
+	  });
+</script>
 <jsp:include page = "/mainfooter.inc.jsp" />
