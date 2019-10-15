@@ -46,11 +46,11 @@
 					  <tbody>
 					    <tr id="rowid0">
 					      <td> 
-					        <select class="form-control form-control-sm" name="itens[0].mov.id" id="produto0">
+					        <select class="form-control" name="itens[0].mov.id" id="produto0">
 					          <option value="1" selected>1</option>
 				          </select>
 				          </td>					      				          
-					      <td><input name="itens[0].quantidade" id="qtd0" type="text" size="5" value="1" class="form-control form-control-sm"></td>					     
+					      <td><input name="itens[0].quantidade" id="qtd0" type="text" size="5" value="1" class="form-control"></td>					     
 					      <td></td>
 					    </tr>
 	    				
@@ -86,7 +86,7 @@ $(document).ready(function() {
 				                '<option value="1">1</option>'+
 			            '</select>'+
 			          '</td>'+					      
-			          '<td><input name="itens['+line+'].qtdItem" size="5" id="qtd'+line+'" type="text" value="1" class="form-control form-control-sm"></td>'+			      
+			          '<td><input name="itens['+line+'].qtdItem" size="5" id="qtd'+line+'" type="text" value="1" class="form-control"></td>'+			      
 				      '<td><button class="btn btn-sm btn-danger" onclick="removeRow(this)" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>'+
 				    '</tr>';
 	     $("table tbody").append(markup);
