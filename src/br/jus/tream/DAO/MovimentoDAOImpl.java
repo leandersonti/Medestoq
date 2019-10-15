@@ -114,7 +114,8 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 		 * List<ItemMovimento> itens = new ArrayList<ItemMovimento>();
 		 * 
 		 * 
-		 * movimento.setDtMovimento(new Date(15)); movimento.setIsRecebimento(true);
+		 * movimento.setDtMovimento(new Date(15));
+		 * movimento.setIsRecebimento(true);
 		 * movimento.setMotivo("teste sistema");
 		 * 
 		 * 

@@ -1,5 +1,6 @@
 package br.jus.tream.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -21,10 +22,10 @@ import br.jus.tream.dominio.Movimento;
 @ResultPath(value = "/")
 @ParentPackage(value = "default")
 public class ActionMovimento extends ActionSupport{
-	private List<Movimento> lstMovimento;
-	private List<ItemMovimento> itens;
+	private List<Movimento> lstMovimento;	
 	private Movimento mov;
 	private BeanResult result;
+	private List<ItemMovimento> itens = new ArrayList<ItemMovimento>();
 	private final static MovimentoDAO dao = MovimentoDAOImpl.getInstance();
 	
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/movimentos.jsp"),
@@ -209,4 +210,6 @@ public class ActionMovimento extends ActionSupport{
 	public void setItens(List<ItemMovimento> itens) {
 		this.itens = itens;
 	}
+
+	
 }

@@ -46,11 +46,11 @@
 					  <tbody>
 					    <tr id="rowid0">
 					      <td> 
-					        <select class="form-control" name="itens[0].mov.id" id="produto0">
+					        <select class="form-control" name="itens[0].produto.id" id="produto0">
 					          <option value="1" selected>1</option>
 				          </select>
 				          </td>					      				          
-					      <td><input name="itens[0].quantidade" id="qtd0" type="text" size="5" value="1" class="form-control"></td>					     
+					      <td><input name="itens[0].qtdItem" id="qtd0" type="text" size="5" value="1" class="form-control"></td>					     
 					      <td></td>
 					    </tr>
 	    				
@@ -96,9 +96,8 @@ $(document).ready(function() {
 	// CLICK DO BOTÃO SAVE	
 	$("#btnSave").click(function() {
 		var URL = ""; 
-		if ( $('#id').length ) { URL = "atualizar"; }
-		else{ URL = "adicionar";  }	
-		if (verificaDados()){
+		if ( $('#id').length ) { URL = "atualizar"; }		
+		//if (verificaDados()){
 			 swal({
 		         title: "Confirma ?",
 		         text: "Confirma " + URL + "?",
@@ -106,6 +105,7 @@ $(document).ready(function() {
 		         buttons: [true, "Salvar"]
 		         }).then((result) => {
 					if (result) {
+						console.log(frm);
 						var frm = $("#frmMovimento").serialize();
 						$.getJSON({
 							url: URL,
@@ -120,7 +120,7 @@ $(document).ready(function() {
 						});
 				      } 
 			   }); // -- FIM SWAL --
-		   }else{ swal("Dados", "Verifique os campos obrigatórios!", "error");  }
+		  // }else{ swal("Dados", "Verifique os campos obrigatórios!", "error");  }
 	 	}); 
 
 });
@@ -145,13 +145,13 @@ removeRow = function(handler) {
   };
 
 
-function verificaDados(){
-    if ($("#frmEleicao")[0].checkValidity()===false){
-    	$("#frmEleicao")[0].classList.add('was-validated');
+/* function verificaDados(){
+    if ($("#frmMovimento")[0].checkValidity()===false){
+    	$("#frmMovimento")[0].classList.add('was-validated');
     	return false;
     }else 
 	   return true;
- }
+ } */
 
 
 </script>
