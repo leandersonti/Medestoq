@@ -21,7 +21,7 @@ import br.jus.tream.dominio.TipoProduto;
 @ResultPath(value = "/")
 @ParentPackage(value = "default")
 public class ActionProduto extends ActionSupport{
-	private List<Produto> lstProduto;
+	private List<Produto> LstProduto;
 	private Produto produto;
 	private BeanResult result;
 	private final static ProdutoDAO dao = ProdutoDAOImpl.getInstance();
@@ -32,7 +32,7 @@ public class ActionProduto extends ActionSupport{
 	)
 	public String listar() {
 		try {
-			this.lstProduto = dao.listar();
+			this.LstProduto = dao.listar();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -46,7 +46,7 @@ public class ActionProduto extends ActionSupport{
 	)
 	public String listarJson() {
 		try {
-			this.lstProduto = dao.listar();
+			this.LstProduto = dao.listar();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -60,7 +60,7 @@ public class ActionProduto extends ActionSupport{
 	)
 	public String listarCdx() {
 		try {
-			this.lstProduto = dao.listarCbx();
+			this.LstProduto = dao.listarCbx();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -159,11 +159,11 @@ public class ActionProduto extends ActionSupport{
 	}	 
 
 	public List<Produto> getLstProduto() {
-		return lstProduto;
+		return LstProduto;
 	}
 
 	public void setLstProduto(List<Produto> lstProduto) {
-		this.lstProduto = lstProduto;
+		this.LstProduto = lstProduto;
 	}
 
 	public Produto getProduto() {

@@ -17,21 +17,10 @@
           </li>
           
           <li class="nav-item dropdown ${produtos}">             
-             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos</a>
-	            <ul class="dropdown-menu" aria-labelledby="dropdown01">	              
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/frmCad">Cadastrar</a></li>	              
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/frmOficializar">Consultar</a></li>	              		             		                               	              	             
-				</ul>	
+             <a class="nav-link dropdown-item" href="${pageContext.request.contextPath}/produto/adicionar" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos</a>	              
+	                          		             		                               	              	             
           </li>
-           
-          <li class="nav-item dropdown ${movimentos}">
-	            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Distribuição</a>
-	            <ul class="dropdown-menu" aria-labelledby="dropdown01">
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribuisecao/frmCad">Cadastrar</a></li>
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribequipamento/frmCad">Consultar</a></li>
-				</ul>	              	              	             
-          </li>  
-          
+    
             <li class="nav-item dropdown">
 	            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tabelas</a>
 	            <div class="dropdown-menu" aria-labelledby="dropdown01">
