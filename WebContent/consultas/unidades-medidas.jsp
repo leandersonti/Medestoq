@@ -13,7 +13,7 @@
 	<thead>
 		<tr>
 			<th width="8%">Sigla</th>
-			<th width="28%">Descricao</th>
+			<th width="28%">Descrição</th>
 
 			<th width="15%"><a href="frmCad" class="btn btn-sm btn-primary" role="button">Novo</a>
 		    </th>

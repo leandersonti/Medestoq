@@ -13,7 +13,7 @@
 	<thead>
 		<tr>
 			<th width="2%">Código</th>
-			<th width="15%">Descricao</th>
+			<th width="15%">Descrição</th>
 		
 			<th width="8%"><a href="frmCad" class="btn btn-sm btn-primary" role="button">Novo</a>
 		    </th>
