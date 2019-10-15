@@ -35,7 +35,7 @@ public class ItemMovimento implements Serializable {
 	@Column(name = "idItemMovimento", unique = true, nullable = false)
 	private Integer id;
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER)
+	@ManyToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fkProduto", referencedColumnName = "idProduto", nullable = true)
 	private Produto produto;
 
