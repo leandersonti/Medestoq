@@ -16,63 +16,29 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/">MedEstoq<span class="sr-only">(current)</span></a>
           </li>
           
-          <li class="nav-item dropdown ${pontotrans}">             
-             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ponto Trasmissão</a>
+          <li class="nav-item dropdown ${produtos}">             
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos</a>
 	            <ul class="dropdown-menu" aria-labelledby="dropdown01">	              
 	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/frmCad">Cadastrar</a></li>	              
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/frmOficializar">Oficializar</a></li>	              		             		                               	              	             
-	              <li class="dropdown-submenu">
-	             	 <a class="dropdown-item dropdown-toggle">Consulta</a>
-	             	 <ul class="dropdown-menu">
-	             	   <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/listar">Por Zona</a></li>		             
-			           <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/listarSemDistribuicaoSecao">Sem Seções</a></li>
-			           <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/listarSemDistribuicaoTecnico">Sem Técnicos</a></li>
-			           <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/listar">Resumo</a></li>
-	             	 </ul>	             	 			         			                   
-			      </li>
+	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/pontotrans/frmOficializar">Consultar</a></li>	              		             		                               	              	             
 				</ul>	
           </li>
            
-          <li class="nav-item dropdown ${distribuicao}">
+          <li class="nav-item dropdown ${movimentos}">
 	            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Distribuição</a>
 	            <ul class="dropdown-menu" aria-labelledby="dropdown01">
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribuisecao/frmCad">Seções</a></li>
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribequipamento/frmCad">Equipamentos</a></li>
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribtecnico/frmCad">Técnicos</a></li>		             		                                
-	              <li><a class="dropdown-item" href="#">Permissões</a></li>
-	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribequipamento/setuplistar">Dist Equipamento</a></li>
-	              <li class="dropdown-submenu">
-	             	 <a class="dropdown-item dropdown-toggle">Consulta</a>
-	             	 <ul class="dropdown-menu">
-	             	   <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribuisecao/frmCad">Seções</a></li>		             
-			           <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribequipamento/frmCad">Equipamentos</a></li>
-			           <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribtecnico/listar">Técnicos</a></li>
-	             	 </ul>	             	 			         			                   
-			      </li>
+	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribuisecao/frmCad">Cadastrar</a></li>
+	              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/distribequipamento/frmCad">Consultar</a></li>
 				</ul>	              	              	             
           </li>  
           
-          <li class="nav-item ${tecnico}">
-            <a class="nav-link" href="${pageContext.request.contextPath}/tecnico/listar">Técnico</a>
-          </li>
-	          
-	          <li class="nav-item dropdown">
-	            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Monitoramento</a>
-	            <div class="dropdown-menu" aria-labelledby="dropdown01">
-	              <a class="dropdown-item" href="#">PPO</a>
-	              <a class="dropdown-item" href="#">Encerramento</a>
-	              <a class="dropdown-item" href="#">Equipamentos</a>
-	            </div>
-	          </li>   
-
-	         <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
 	            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tabelas</a>
 	            <div class="dropdown-menu" aria-labelledby="dropdown01">
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/eleicao/listar">Eleição</a>
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/contrato/listar">Contratos</a>
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/equipamento/listar">Equipamento</a>
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/EquipamentoTipo/listar">Tipo Equipamentos</a>
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/equipamento/frmImportar">Importar Equipamentos</a>
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/tipoproduto/listar">Tipos de produtos</a>
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/undmedida/listar">Und de Medidas</a>
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/#">Grupos</a>
+	              
 	            </div>
 	          </li>        
               
