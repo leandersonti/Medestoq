@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -51,16 +52,16 @@ public class Produto implements Serializable {
 	@Column(name = "dtValidade")
 	private Date dtValidade;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "fkUnidadeMedida", referencedColumnName = "idUnidadeMedida", nullable = true)
+	@ManyToOne()
+	@JoinColumn(name = "fkUnidadeMedida")
 	private UnidadeMedida unidadeMedida;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "fkGrupoProduto", referencedColumnName = "idGrupoProduto", nullable = true)
+	@ManyToOne()
+	@JoinColumn(name = "fkGrupoProduto")
 	private GrupoProduto grupoProduto;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "fkTipoProduto", referencedColumnName = "idTipoProduto", nullable = true)
+	@ManyToOne()
+	@JoinColumn(name = "fkTipoProduto")
 	private TipoProduto tipoProduto;	
 	
 	public Produto() {	

@@ -56,10 +56,10 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	
 	
 	@Override
-	public int adicionar (Produto Produto) throws Exception{
+	public int adicionar (Produto produto) throws Exception{
 		int ret = 0;
 		try {
-			dao.adicionar(Produto);
+			dao.adicionar(produto);
 			ret =1;
 		} catch (Exception e) {
 			//System.out.println("Ocorreu um ERRO " + e.getMessage());
@@ -69,10 +69,10 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	}
 
 	@Override
-	public int remover (Produto Produto) throws Exception{
+	public int remover (Produto produto) throws Exception{
 		int ret = 0;
 		try {
-			dao.remover(Produto);
+			dao.remover(produto);
 			ret =1;
 		} catch (Exception e) {
 			//System.out.println("Ocorreu um ERRO " + e.getMessage());
@@ -82,10 +82,10 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	}
 	
 	@Override
-	public int atualizar (Produto Produto) throws Exception{
+	public int atualizar (Produto produto) throws Exception{
 		int ret = 0;
 		try {
-			dao.atualizar(Produto);
+			dao.atualizar(produto);
 			ret =1;
 		} catch (Exception e) {
 			System.out.println("Ocorreu um ERRO " + e.getMessage());
@@ -142,54 +142,35 @@ public class ProdutoDAOImpl implements ProdutoDAO {
     
 	public static void main(String[] args) throws Exception{
 		ProdutoDAO dao = ProdutoDAOImpl.getInstance();
-		//File fileUpload = new File("C://temp/galinha_molho_pardooo.jpg");
-		
-		//Produto p0 = new Produto();
-		//int ret = 0;
-		//p0 = dao.getBean(10);
-		//p0.setDescricao("Lasanha de Carne para 2 pessoas");
-		//p0.setTitulo("Lasanha de carne com molho bolonhesa");
-		//p0.setValor(new BigDecimal("37.00"));
-		//p0.setPicture(FuncsUtils.getInstance().readBytes(fileUpload));
-		
-		//ret = dao.alterar(p0);
-		//System.out.println("atualizado  = " + ret );
+
 		GrupoProduto grp = new GrupoProduto();
-		grp.setId(1);
+		grp = GrupoProdutoDAOImpl.getInstance().getBean(2);
 		
-		TipoProduto tipo = new TipoProduto();
-		TipoProdutoDAO dao2 = TipoProdutoDAOImpl.getInstance();
-		tipo = dao2.getBean(2);		
+		TipoProduto tipo = new TipoProduto();		
+		tipo = TipoProdutoDAOImpl.getInstance().getBean(1);		
 		
 		UnidadeMedida und = new UnidadeMedida();
-		und.setId(2);
+		und = UnidadeMedidaDAOImpl.getInstance().getBean(3);
 		
-		Produto p0 = new Produto();
-		
-		//p0.setGrupoProduto(null);		
-		//p0.setUnidadeMedida(null);
+		Produto p0 = new Produto();		
+				
+		p0.setGrupoProduto(grp); 
+		p0.setUnidadeMedida(und); 
 		p0.setTipoProduto(tipo);
+		 
+		//System.out.println("=="+p0.getGrupoProduto().getDescricao());
 		
-		p0.setQtdEstoque(100); 
-		p0.setQtdMinima(15);
-		p0.setDescricao("teste sistema2");
-		p0.setDtValidade(new Date(15));		
+		p0.setQtdEstoque(20); 
+		p0.setQtdMinima(25);
+		p0.setDescricao("teste sistema3");
+		p0.setDtValidade(new Date(System.currentTimeMillis()));		
 		
 		int ret = dao.adicionar(p0);
+		
 		System.out.println("Ret = " + ret);
 		
 		
 		System.out.println("Done!!!");
-			
-		
-		
-		/*
-		for (Produto p : dao.listar()) {
-			System.out.println("produto " + p.getTxProduto());
-		}
-		
-		*/
-		
 				
 	}
 }
