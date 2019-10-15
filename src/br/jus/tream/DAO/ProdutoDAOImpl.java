@@ -100,7 +100,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
 		try {
 			  // lista = dao.listarTodos();
-			  TypedQuery<Produto> query = em.createQuery("SELECT c FROM Produto c ORDER BY c.txProduto", 
+			  TypedQuery<Produto> query = em.createQuery("SELECT c FROM Produto c ORDER BY c.descricao", 
 					    Produto.class);
 			  lista = query.getResultList();
 		  }
@@ -111,7 +111,25 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			}
 		return lista;	
 	}
-	
+	 
+	@Override 
+	public List<Produto> listarCbx() throws Exception { 
+		List<Produto> lista = null;
+		EntityManager em = EntityManagerProvider.getInstance().createManager();
+		try {
+			  // lista = dao.listarTodos();
+			  TypedQuery<Produto> query = em.createQuery("SELECT NEW Produto(c.id, c.descricao) FROM Produto c ORDER BY c.descricao", 
+					    Produto.class);
+			  lista = query.getResultList();
+		  }
+		  catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				em.close();
+			}
+		return lista;	
+	}
+	 
 	public byte[] readBytes(File file) throws IOException {
 		ByteArrayOutputStream ous = null;
 		InputStream ios = null;

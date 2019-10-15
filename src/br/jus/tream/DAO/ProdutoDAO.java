@@ -8,6 +8,8 @@ public interface ProdutoDAO {
 	
 	public List<Produto> listar() throws Exception;
 	
+	public List<Produto> listarCbx() throws Exception;
+	
 	public List<Produto> listar(String vdesc) throws Exception;
 	
 	public Produto getBean(int id) throws Exception;
