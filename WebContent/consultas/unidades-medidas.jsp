@@ -6,7 +6,7 @@
 <div class="container">
      
 <div class="card ">
-  <div class="card-header bg-dark" style="color:white;">Unidade de Medida</div>
+  <div class="card-header text-white bg-dark" >Unidade de Medida</div>
   <div class="card-body">
   
     <table id="tbeleicao" class="table table-sm table-hover">
