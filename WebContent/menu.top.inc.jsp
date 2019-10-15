@@ -16,8 +16,8 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/">MedEstoq<span class="sr-only">(current)</span></a>
           </li>
           
-          <li class="nav-item dropdown ${produtos}">             
-             <a class="nav-link dropdown-item" href="${pageContext.request.contextPath}/produto/adicionar" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos</a>	              
+          <li class="nav-item ${produtos}">             
+             <a class="nav-link" href="${pageContext.request.contextPath}/produto/listar" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Produtos</a>	              
 	                          		             		                               	              	             
           </li>
     
