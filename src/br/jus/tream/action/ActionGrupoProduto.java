@@ -79,10 +79,10 @@ public class ActionGrupoProduto extends ActionSupport{
 			@Result(name = "error", location = "/pages/resultAjax.jsp")}
 	  //, interceptorRefs = @InterceptorRef("authStack")
 	)
-	public String doAdicionar() {
+	public String Adicionar() {
 		BeanResult beanResult = new BeanResult();
-		try {
-				beanResult.setRet(dao.adicionar(grupoProduto));
+		try {							
+				beanResult.setRet(dao.adicionar(grupoProduto));				
 				if (beanResult.getRet() == 1) {
 					beanResult.setMensagem(getText("inserir.sucesso"));
 					beanResult.setType("success");
@@ -93,6 +93,7 @@ public class ActionGrupoProduto extends ActionSupport{
 				}
 		} catch (Exception e) {
 			    addActionError(getText("alterar.error") + " Error: " + e.getMessage());
+			    e.printStackTrace();
 			  //result.setMensagem(getText("inserir.error") + " Error: " + e.getMessage());
 			return "error";
 		}
@@ -158,6 +159,16 @@ public class ActionGrupoProduto extends ActionSupport{
 	public void setGrupoProduto(GrupoProduto grupoProduto) {
 		this.grupoProduto = grupoProduto;
 	}
+
+	public BeanResult getResult() {
+		return result;
+	}
+
+	public void setResult(BeanResult result) {
+		this.result = result;
+	}
+	
+	
 }
 	
 	
