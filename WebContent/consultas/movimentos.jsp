@@ -9,51 +9,38 @@
   <div class="card-header">Data Eleição</div>
   <div class="card-body">
   
-    <table id="tbeleicao" class="table table-sm table-hover">
+    <table id="tbmovimento" class="table table-sm table-hover">
 	<thead>
 		<tr>
-			<th width="8%">Data</th>
-			<th width="28%">Descricao</th>
-			<th width="10%">turno</th> 
-			<th width="18%">Ativo</th>
+			<th width="25%">Dt. Movimento</th>
+			<th width="15%">Tipo</th>
+			<th width="18%">Descrição</th>
+			
 			<th width="15%"><a href="frmCad" class="btn btn-sm btn-primary" role="button">Novo</a>
-		    </th>
+		    </th> 
 		</tr>
 	</thead>
 	<tbody>
-	<s:iterator value="lstEleicao">
+	<s:iterator value="lstMovimento">
 		<tr id="tr${id}">
-		    <td><s:property value="%{getText('format.date',{dataEleicao})}"/></td>
-			<td><s:property value="descricao"/></td>
-			<td><s:property value="turno"/></td>
-			<td>
-					<s:if test='ativo == 1'>
-							<span id="ele${id}" class="badge badge-pill badge-success" active="1">Ativo</span>
-					</s:if>
-					<s:else>
-					 <a href="#" id="setcontext${id}" data-record-data="<s:property value="%{getText('format.date',{dataEleicao})}"/>" 
-					      data-record-turno="${turno}" data-record-id="${id}">
-					      <span id="ele${id}" class="badge badge-pill badge-secondary">Desativado</span>
-					 </a>  
-					</s:else>
-			</td>
+		    <td><s:property value="dtMovimento"/></td>
+			<td><s:property value="isRecebimento"/></td>
+			<td><s:property value="motivo"/></td>		
 			<td>  		    
-				    <a href="frmEditar?eleicao.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
-							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-				    </a>
-					
-					<a href="#" id="excluir${id}" class="btn btn-sm btn-danger" role="button" data-record-id="${id}" 
-					     data-record-data="<s:property value="%{getText('format.date',{dataEleicao})}"/>"
-					     data-record-descricao="${descricao}">
+				   <a href="frmEditar?eleicao.id=${id}" id="idedit" class="btn btn-sm btn-secondary" role="button">
+						<i class="fa fa-search" aria-hidden="true"></i>
+				   </a>
+				
+				<a href="#" id="excluir${id}" class="btn btn-sm btn-danger" role="button" data-record-id="${id}" 				     
+				     data-record-descricao="${descricao}">
 					  		<i class="fa fa-trash-o" aria-hidden="true"></i>
 				    </a>
-			</td>
-		</tr>
+			</td> 
+		</tr> 
 		</s:iterator>
 	 </tbody>	
-	</table>
-	
-    
+	</table> 
+	     
 	  </div>
 	</div>
 </div>
@@ -61,6 +48,42 @@
    
 
 <jsp:include page = "/javascripts.jsp" />
-<script src="${pageContext.request.contextPath}/js/eleicao.js" charset="utf-8"></script>
+<script>
+$(document).ready(function() {
+	if($("#tbmovimento").length){
+		   $('#tbmovimento').dataTable( {
+		        "order": [[ 0, "des" ],[ 1, "des" ]]
+		   });
+    }
+	
+	// CLICK DO BOTÃO EXCLUIR
+	$( "[id*='excluir']" ).click(function(event) {
+	    var data = $(event.delegateTarget).data();
+		var id = data.recordId; 
+		var descricao = data.recordDescricao;
+		swal({
+			  title: 'Excluir?',
+			  text: "Deseja excluir esse registro? (" + descricao + ")",
+			  icon: 'warning',
+			  buttons: [true, "Sim excluir!"]
+			}).then((result) => {
+			  if (result) {
+			       $.getJSON({
+					  url: "remover?mov.id="+id
+				   }).done(function( data ) {
+				    	  //if (data.ret==1){
+				    		//  $('#tr'+id).fadeOut(); 
+				    		  swal("Remover", data.mensagem, data.type);
+				    	  //}
+				    	  //else
+				    		//  swal("Remover", "Ocorreu um erro ao remover", data.type);
+					}).fail(function() {
+						swal("Remover", "Ocorreu um erro ao remover", "error");
+					});
+			   }
+			})
+	  });
+});
+</script>
 
 <jsp:include page = "/mainfooter.inc.jsp" />

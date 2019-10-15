@@ -110,40 +110,36 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 		Movimento movimento = new Movimento();			
 		Produto produto = new Produto();		
 		
-		List<ItemMovimento> itens = new ArrayList<ItemMovimento>();			
+		/*
+		 * List<ItemMovimento> itens = new ArrayList<ItemMovimento>();
+		 * 
+		 * 
+		 * movimento.setDtMovimento(new Date(15)); movimento.setIsRecebimento(true);
+		 * movimento.setMotivo("teste sistema");
+		 * 
+		 * 
+		 * movimento = dao.getBean(7); //itens = movimento.getItens();
+		 * 
+		 * ItemMovimento item1 = new ItemMovimento(); 
+		 * item1.setMovimento(movimento);
+		 * produto = ProdutoDAOImpl.getInstance().getBean(240);
+		 * item1.setProduto(produto); item1.setQtdItem(10);
+		 * 
+		 * ItemMovimento item2 = new ItemMovimento(); 
+		 * item2.setMovimento(movimento);
+		 * produto = ProdutoDAOImpl.getInstance().getBean(234);
+		 * item2.setProduto(produto); item2.setQtdItem(20);
+		 * 
+		 * itens.add(item1); itens.add(item2);
+		 * 
+		 * //movimento.setItens(itens); int ret = dao.adicionarItem(itens);
+		 * System.out.println("==="+ret);
+		 */
 				
-		
-		  movimento.setDtMovimento(new Date(15));
-		  movimento.setIsRecebimento(true);
-		  movimento.setMotivo("teste sistema");
-		
-		 		
 		movimento = dao.getBean(7);
-		//itens = movimento.getItens();
+		int ret = dao.remover(movimento);
 		
-		ItemMovimento item1 = new ItemMovimento();		
-		item1.setMovimento(movimento);
-		produto = ProdutoDAOImpl.getInstance().getBean(240);
-		item1.setProduto(produto);
-		item1.setQtdItem(10);		
-				
-		ItemMovimento item2 = new ItemMovimento(); 
-		item2.setMovimento(movimento);
-		produto = ProdutoDAOImpl.getInstance().getBean(234);
-		item2.setProduto(produto);
-		item2.setQtdItem(20);
-		  
-		itens.add(item1); 
-		itens.add(item2);		 							
-		
-		//movimento.setItens(itens);
-		int ret = dao.adicionarItem(itens);
 		System.out.println("==="+ret);
-		
-				
-		//movimento = dao.getBean(1);
-		
-		//System.out.println("==="+movimento.getMotivo());
 		
 		/*
 		 * for (Movimento s : dao.listar()) { System.out.println("===" +

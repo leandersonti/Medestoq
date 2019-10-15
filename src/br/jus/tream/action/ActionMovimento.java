@@ -55,15 +55,15 @@ public class ActionMovimento extends ActionSupport{
 		return "success";
 	}
 	
-	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmTipoProduto.jsp"),
+	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmMovimento.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp") }
 	 //, interceptorRefs = @InterceptorRef("authStack")
 	)
-	public String frmCadEleicao() {	
+	public String frmCadMovimento() {	
 		return "success";
 	}
 	
-	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmTipoProduto.jsp"),
+	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmMovimento.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp")}
 	 //, interceptorRefs = @InterceptorRef("authStack")
 	)
@@ -157,12 +157,21 @@ public class ActionMovimento extends ActionSupport{
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();
 		beanResult.setRet(0);
-		try {
-				beanResult.setRet(dao.remover(this.mov));
-				beanResult.setMensagem(getText("remover.sucesso"));
-				beanResult.setType("success");
-		 } catch (Exception e) {
-			addActionError(getText("remover.error") + " Error: " + e.getMessage());
+		try {				
+				mov = dao.getBean(this.mov.getId());
+				
+				if(mov != null) {
+					beanResult.setRet(dao.remover(this.mov));
+					beanResult.setMensagem(getText("remover.sucesso"));
+					beanResult.setType("success");
+				}else {
+					beanResult.setMensagem(getText("remover.error"));
+					beanResult.setType("error");
+				}				
+				
+		 } catch (Exception e) {			
+			 addActionError(getText("remover.error") + " Error: " + e.getMessage());
+			 e.printStackTrace();
 			// r.setMensagem(getText("remover.error") + " Error: " + e.getMessage());
 			return "error";
 		}
