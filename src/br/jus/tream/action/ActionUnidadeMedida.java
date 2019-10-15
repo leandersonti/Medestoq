@@ -10,28 +10,28 @@ import org.apache.struts2.convention.annotation.ResultPath;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import br.jus.tream.DAO.TipoProdutoDAO;
-import br.jus.tream.DAO.TipoProdutoDAOImpl;
+import br.jus.tream.DAO.UnidadeMedidaDAO;
+import br.jus.tream.DAO.UnidadeMedidaDAOImpl;
 import br.jus.tream.dominio.BeanResult;
-import br.jus.tream.dominio.TipoProduto;
+import br.jus.tream.dominio.UnidadeMedida;
 
 @SuppressWarnings("serial")
-@Namespace("/tipoproduto")
+@Namespace("/undmedida")
 @ResultPath(value = "/")
 @ParentPackage(value = "default")
-public class ActionTipoProduto extends ActionSupport{
-	private List<TipoProduto> lstTipoProduto;
-	private TipoProduto tipoproduto;
+public class ActionUnidadeMedida extends ActionSupport{
+	private List<UnidadeMedida> lstUnidadeMedida;
+	private UnidadeMedida und;
 	private BeanResult result;
-	private final static TipoProdutoDAO dao = TipoProdutoDAOImpl.getInstance();
+	private final static UnidadeMedidaDAO dao = UnidadeMedidaDAOImpl.getInstance();
 	
-	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/tipo-produto.jsp"),
+	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/unidades-medidas.jsp"),
 			@Result(name = "error", location = "/result.jsp")}
 	   //, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listar() {
 		try {
-			this.lstTipoProduto = dao.listar();
+			this.lstUnidadeMedida = dao.listar();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -39,13 +39,13 @@ public class ActionTipoProduto extends ActionSupport{
 		return "success";
 	}
 	
-	@Action(value = "listarJson", results = { @Result(name = "success", type = "json", params = { "root", "lstTipoProduto" }),
+	@Action(value = "listarJson", results = { @Result(name = "success", type = "json", params = { "root", "lstUnidadeMedida" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
 	//, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listarJson() {
 		try {
-			this.lstTipoProduto = dao.listar();
+			this.lstUnidadeMedida = dao.listar();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -53,7 +53,7 @@ public class ActionTipoProduto extends ActionSupport{
 		return "success";
 	}
 	
-	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmTipoProduto.jsp"),
+	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmUnidadeMedida.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp") }
 	 //, interceptorRefs = @InterceptorRef("authStack")
 	)
@@ -61,13 +61,13 @@ public class ActionTipoProduto extends ActionSupport{
 		return "success";
 	}
 	
-	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmTipoProduto.jsp"),
+	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmUnidadeMedida.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp")}
-	 //, interceptorRefs = @InterceptorRef("authStack")
+	//, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doFrmEditar() {
 		try {
-			this.tipoproduto = dao.getBean(this.tipoproduto.getId());
+			this.und = dao.getBean(this.und.getId());
 		} catch (Exception e) {
 			addActionError(getText("frmsetup.error") + " Error: " + e.getMessage());
 			return "error";
@@ -82,7 +82,7 @@ public class ActionTipoProduto extends ActionSupport{
 	public String doAdicionar() {
 		BeanResult beanResult = new BeanResult();
 		try {
-				beanResult.setRet(dao.adicionar(tipoproduto));
+				beanResult.setRet(dao.adicionar(und));
 				if (beanResult.getRet() == 1) {
 					beanResult.setMensagem(getText("inserir.sucesso"));
 					beanResult.setType("success");
@@ -107,7 +107,7 @@ public class ActionTipoProduto extends ActionSupport{
 	public String doAtualizar() {
 		BeanResult beanResult = new BeanResult();
 		try {
-			beanResult.setRet(dao.atualizar(this.tipoproduto));
+			beanResult.setRet(dao.atualizar(this.und));
 				if (beanResult.getRet()==1) {
 					beanResult.setMensagem(getText("alterar.sucesso"));
 					beanResult.setType("success");
@@ -131,7 +131,7 @@ public class ActionTipoProduto extends ActionSupport{
 		BeanResult beanResult = new BeanResult();
 		beanResult.setRet(0);
 		try {
-				beanResult.setRet(dao.remover(this.tipoproduto));
+				beanResult.setRet(dao.remover(this.und));
 				beanResult.setMensagem(getText("remover.sucesso"));
 				beanResult.setType("success");
 		 } catch (Exception e) {
@@ -143,20 +143,20 @@ public class ActionTipoProduto extends ActionSupport{
 	  return "success";
 	}
 	
-	public List<TipoProduto> getLstTipoProduto() {
-		return lstTipoProduto;
+	public List<UnidadeMedida> getLstUnidadeMedida() {
+		return lstUnidadeMedida;
 	}
 
-	public void setLstTipoProduto(List<TipoProduto> lstTipoProduto) {
-		this.lstTipoProduto = lstTipoProduto;
+	public void setLstUnidadeMedida(List<UnidadeMedida> lstUnidadeMedida) {
+		this.lstUnidadeMedida = lstUnidadeMedida;
 	}
 
-	public TipoProduto getTipoproduto() {
-		return tipoproduto;
+	public UnidadeMedida getUnd() {
+		return und;
 	}
 
-	public void setTipoproduto(TipoProduto tipoproduto) {
-		this.tipoproduto = tipoproduto;
+	public void setUnd(UnidadeMedida und) {
+		this.und = und;
 	}
 
 	public BeanResult getResult() {
