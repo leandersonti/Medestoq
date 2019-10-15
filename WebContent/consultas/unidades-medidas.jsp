@@ -5,17 +5,16 @@
 
 <div class="container">
      
-<div class="card">
-  <div class="card-header">Data Eleição</div>
+<div class="card ">
+  <div class="card-header text-white bg-dark" >Unidade de Medida</div>
   <div class="card-body">
   
     <table id="tbeleicao" class="table table-sm table-hover">
 	<thead>
 		<tr>
-			<th width="8%">Data</th>
-			<th width="28%">Descricao</th>
-			<th width="10%">turno</th> 
-			<th width="18%">Ativo</th>
+			<th width="8%">Sigla</th>
+			<th width="28%">Descrição</th>
+
 			<th width="15%"><a href="frmCad" class="btn btn-sm btn-primary" role="button">Novo</a>
 		    </th>
 		</tr>
@@ -25,18 +24,7 @@
 		<tr id="tr${id}">
 		    <td><s:property value="%{getText('format.date',{dataEleicao})}"/></td>
 			<td><s:property value="descricao"/></td>
-			<td><s:property value="turno"/></td>
-			<td>
-					<s:if test='ativo == 1'>
-							<span id="ele${id}" class="badge badge-pill badge-success" active="1">Ativo</span>
-					</s:if>
-					<s:else>
-					 <a href="#" id="setcontext${id}" data-record-data="<s:property value="%{getText('format.date',{dataEleicao})}"/>" 
-					      data-record-turno="${turno}" data-record-id="${id}">
-					      <span id="ele${id}" class="badge badge-pill badge-secondary">Desativado</span>
-					 </a>  
-					</s:else>
-			</td>
+		
 			<td>  		    
 				    <a href="frmEditar?eleicao.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
