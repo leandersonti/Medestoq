@@ -97,8 +97,8 @@ public class GrupoProdutoDAOImpl implements GrupoProdutoDAO {
 		//System.out.println("atualizado  = " + ret );
 		
 		GrupoProduto grupoProduto = new GrupoProduto();
-		grupoProduto.setId(4);
-		int ret = dao.remover(grupoProduto);
+		grupoProduto.setDescricao("teste sistema");
+		int ret = dao.adicionar(grupoProduto);
 		
 		System.out.println("==="+ret);
 		
