@@ -25,10 +25,10 @@ $(document).ready(function() {
 							url: URL,
 							data: frm
 					    }).done(function( data ) {
-					    	if(data.ret==1)
+					    	//if(data.ret==1)
 					    	swal(URL, data.mensagem, data.type);
-					    	else 
-					    		swal(URL, data.mensagem, "error");
+					    	//else 
+					    	//	swal(URL, data.mensagem, "error");
 						}).fail(function() {
 							swal("Adicionar", "Ocorreu um erro ao incluir", "error");
 						});
