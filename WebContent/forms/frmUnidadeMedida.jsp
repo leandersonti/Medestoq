@@ -6,7 +6,7 @@
 		<div class="card-header text-white bg-dark">Cadastrar Unidade de Medida:</div>
 		<div class="card-body">
 
-			<form action="#" method="post" name="form1" id="form1" class="needs-validation_" novalidate>
+			<form action="#" method="post" name="frmUnidadeMedida" id="frmUnidadeMedida" class="needs-validation_" novalidate>
 				<s:if test='undmedida.id != null'>
 					<input type="hidden" id="id" name="undmedida.id" value="${undmedida.id}">
 				</s:if>
@@ -49,7 +49,7 @@ $(document).ready(function() {
 		         buttons: [true, "Salvar"]
 		         }).then((result) => {
 					if (result) {
-						var frm = $("#form1").serialize();						
+						var frm = $("#frmUnidadeMedida").serialize();						
 						$.getJSON({
 							url: URL,
 							data: frm
@@ -71,8 +71,8 @@ $(document).ready(function() {
 });
 
  function verificaDados(){
-    if ($("#form1")[0].checkValidity()===false){
-    	$("#form1")[0].classList.add('was-validated');
+    if ($("#frmUnidadeMedida")[0].checkValidity()===false){
+    	$("#frmUnidadeMedida")[0].classList.add('was-validated');
     	return false;
     }else 
 	   return true;
