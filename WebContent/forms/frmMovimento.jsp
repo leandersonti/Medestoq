@@ -13,30 +13,33 @@
 				</s:if>
 				
 				<s:if test='mov == null'> 
-				<label for="descricao">*Tipo Movimento:</label>				  			
-					<div class="form-check">
-					  <input class="form-check-input" type="radio" name="mov.isRecebimento" id="exampleRadios1" value="1" checked>
-					  <label class="form-check-label" for="exampleRadios1">
-					    Entrada 
-					  </label>   
-					</div>     
-					<div class="form-check">
-					  <input class="form-check-input" type="radio" name="mov.isRecebimento" id="exampleRadios2" value="0">
-					  <label class="form-check-label" for="exampleRadios2">
-					    Saida
-					  </label>
-					</div> 
+				<div class="form-row">
+				<label for="descricao">*Tipo Movimento:&nbsp;&nbsp;</label>				  			
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="mov.isRecebimento" id="exampleRadios1" value="1" checked>
+						  <label class="form-check-label" for="exampleRadios1">
+						    Entrada 
+						  </label>     
+						</div>     
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="mov.isRecebimento" id="exampleRadios2" value="0">
+						  <label class="form-check-label" for="exampleRadios2">
+						    Saida
+						  </label>
+						</div>   
+					</div>
 					<div class="form-row">
 						<label for="descricao">*Descricao:</label> 
-						<input type="text" class="form-control" name="mov.motivo" placeholder="Informe uma descrição" required>
+						<!-- <input type="text" class="form-control" name="mov.motivo" placeholder="Informe uma descrição" required> -->
+						<textarea class="form-control" name="mov.motivo" rows="5" cols="20" placeholder="Informe uma descrição" required></textarea>
 						<div class="invalid-feedback">Por favor, informe uma descricao.</div>
-					</div>					
-				</s:if>	
+					</div>					 
+				</s:if>	  
 				<s:else>
 					<div class="form-row">
 						<label for="descricao">*Descricao:</label> 
-						<input type="text" class="form-control" name="mov.motivo" value="${mov.motivo}" disabled>
-						<div class="invalid-feedback">Por favor, informe uma descricao.</div>
+						<%-- <input type="text" class="form-control" name="mov.motivo" value="${mov.motivo}" disabled> --%>
+						<textarea class="form-control" name="mov.motivo" rows="5" cols="20" placeholder="Informe uma descrição" disabled>${mov.motivo}</textarea>						
 					</div>	
 				</s:else>					 
 				 									
@@ -53,7 +56,7 @@
 					  <tbody>
 					    <tr id="rowid0">
 					      <td> 
-					        <select class="form-control chosen-select" name="itens[0].produto.id" id="produto0">
+					        <select class="form-control chosen-select" name="itens[0].produto.id" id="produto0" required>
 					          <option value="1" selected>1</option>
 				          </select>
 				          </td>					      				          
@@ -85,7 +88,7 @@ $(document).ready(function() {
 		 line++;
 	    var markup ='<tr>'+
 				      '<td>'+ 
-				        '<select class="form-control chosen-select" name="itens['+line+'].produto.id" id="produto'+line+'">'+
+				        '<select class="form-control chosen-select" name="itens['+line+'].produto.id" id="produto'+line+'" required>'+
 				                '<option value="1">1</option>'+
 			            '</select>'+
 			          '</td>'+					      
@@ -95,21 +98,22 @@ $(document).ready(function() {
 	     $("table tbody").append(markup);
 	     CarregaProduto(line);
 	});
+		
 	
+});	
 	// CLICK DO BOTÃO SAVE	
 	$("#btnSave").click(function() {
 		var URL = "adicionar"; 
 		if ( $('#id').length ) { URL = "atualizar"; }		
-		//if (verificaDados()){
-			 swal({
+		if (verificaDados()){
+			 swal({ 
 		         title: "Confirma ?",
-		         text: "Confirma " + URL + "?",
-		         icon: 'warning',
+		         text: "Confirma " + URL + "?", 
+		         icon: 'warning',  
 		         buttons: [true, "Salvar"]
 		         }).then((result) => {
 					if (result) {						
-						var frm = $("#frmMovimento").serialize();
-						console.log(frm);
+						var frm = $("#frmMovimento").serialize();						
 						$.getJSON({
 							url: URL, 
 							data: frm
@@ -123,9 +127,9 @@ $(document).ready(function() {
 						});
 				      } 
 			   }); // -- FIM SWAL --
-		  // }else{ swal("Dados", "Verifique os campos obrigatórios!", "error");  }
+		   }else{ swal("Dados", "Verifique os campos obrigatórios!", "error");  }
 	 	}); 
-});
+
 
 function CarregaProduto(id){	
 	  var select = $('#produto'+id);	       
@@ -149,13 +153,24 @@ removeRow = function(handler) {
   };
 
 
-/* function verificaDados(){
+ function verificaDados(){
+	 
+	 var obj = $('select option:checked');
+	 var ret = true;	
+	 
     if ($("#frmMovimento")[0].checkValidity()===false){
     	$("#frmMovimento")[0].classList.add('was-validated');
     	return false;
-    }else 
-	   return true;
- } */
+    }else{
+    	$.each(obj, function(key, value) {            
+			if(value.value == -1){
+				ret=false
+			}			
+		 });    	    	
+    }	
+        	
+	return ret;   
+ } 
 
 
 </script>
