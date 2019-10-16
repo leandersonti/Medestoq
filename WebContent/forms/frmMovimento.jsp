@@ -40,8 +40,7 @@
 					</div>	
 				</s:else>					 
 				 									
-				  <div class="form-row">
-			    <div class="table-responsive">
+				  <div class="form-row">			    
 			    <table class="table table-sm">
 					  <thead>
 					    <tr>
@@ -54,7 +53,7 @@
 					  <tbody>
 					    <tr id="rowid0">
 					      <td> 
-					        <select class="form-control" name="itens[0].produto.id" id="produto0">
+					        <select class="form-control chosen-select" name="itens[0].produto.id" id="produto0">
 					          <option value="1" selected>1</option>
 				          </select>
 				          </td>					      				          
@@ -64,9 +63,7 @@
 	    				
 					  </tbody>
 					</table>
-			     </div>  
-			    
-			  </div>
+			     </div>  			    			 
 			  				  
 			   <button id="add-row" type="button" class="btn btn-sm btn-info">Add Item</button> 
 			   <button id="btnSave" type="button" class="btn btn-sm btn-success">Salvar</button>
@@ -80,17 +77,15 @@
 <jsp:include page="/javascripts.jsp" />
 <script>
 
-$(document).ready(function() {
-
+$(document).ready(function() {	
 	var line = 0;
-	
 	CarregaProduto(0); 
-
+	
 	$("#add-row").click(function(){
 		 line++;
 	    var markup ='<tr>'+
 				      '<td>'+ 
-				        '<select class="form-control" name="itens['+line+'].produto.id" id="produto'+line+'">'+
+				        '<select class="form-control chosen-select" name="itens['+line+'].produto.id" id="produto'+line+'">'+
 				                '<option value="1">1</option>'+
 			            '</select>'+
 			          '</td>'+					      
@@ -130,10 +125,9 @@ $(document).ready(function() {
 			   }); // -- FIM SWAL --
 		  // }else{ swal("Dados", "Verifique os campos obrigatórios!", "error");  }
 	 	}); 
-
 });
 
-function CarregaProduto(id){
+function CarregaProduto(id){	
 	  var select = $('#produto'+id);	       
 	      select.find('option').remove();	      
 			      $.getJSON('../produto/listarCbx',function(jsonResponse) {			    	  
@@ -141,15 +135,17 @@ function CarregaProduto(id){
 			              $.each(jsonResponse, function(key, value) {
 			                $('<option>').val(value.id).text(value.descricao).appendTo(select);
 	       			      });
-		          });
+		          }).done(function() {
+		        	  $(".chosen-select").chosen({no_results_text: "Oops, não tem produto!"}); 
+		          });			      
 	  }	
-
+   
 removeRow = function(handler) { 
     var tr = $(handler).closest('tr');
-    tr.fadeOut(400, function(){ 
+    tr.fadeOut(400, function(){  
       tr.remove(); 
     }); 
-    return false;
+    return false; 
   };
 
 
