@@ -31,7 +31,11 @@ public class ActionProduto extends ActionSupport{
 	)
 	public String listar() {
 		try {
+			if (produto != null ) {
 			this.lstProduto = dao.listar(produto.getTipo().getId(), produto.getGrupo().getId());
+			}
+			
+				
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";

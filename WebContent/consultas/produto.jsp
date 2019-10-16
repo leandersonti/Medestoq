@@ -7,25 +7,50 @@
      
 <div class="card">
   <div class="card-header">Produtos</div>
+   <form class="form-row" action="listar">
+    
+  		<div class="col-md-4">
+      <select id="tipo" name="produto.tipo.id" class="form-control">
+        <option selected>Selecione um tipo</option>        
+      </select>
+      </div>
+      <div class="col-md-4">
+      <select id="grupo" name="produto.grupo.id" class="form-control">
+        <option selected>Selecione um grupo</option>        
+      </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Consultar</button>
+    
+</form>
+  
+ 
+ 
   <div class="card-body">
   
-    <table id="tbeleicao" class="table table-sm table-hover">
+    <table id="tbproduto" class="table table-sm table-hover">
 	<thead>
 		<tr>
 			<th width="8%">Id</th>
 			<th width="28%">Descrição</th> 
-
+			<th width="28%">Dte valid</th>
+			<th width="28%">QTD</th>
+			<th width="28%">Min</th> 
+			<th width="28%">Status</th>
 			<th width="15%"><a href="frmCad" class="btn btn-sm btn-primary" role="button">Novo</a>
 		    </th>
 		</tr>
 	</thead>
 	<tbody>
 	<s:iterator value="lstProduto">
-		<tr id="tr${id}"> 
+		<tr id="tr${id}" class="${estilo}"> 
 		    <td><s:property value="id"/></td>
 			<td><s:property value="descricao"/></td>
-		
+			<td><s:property value="%{getText('format.date',{dtValidade})}"/></td>
 			
+			<td><s:property value="qtdEstoque"/></td>
+			<td><s:property value="qtdMinima"/></td>
+			
+			<td><s:property value="status"/></td>
 			<td>  		    
 				    <a href="frmEditar?produto.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -50,34 +75,48 @@
 
 <jsp:include page = "/javascripts.jsp" />
 <script src="${pageContext.request.contextPath}/js/produto.js" charset="utf-8"></script>
-<script type="text/javascript">
+<script>
 
+function CarregaTipo(){	
+	var x = ${produto.tipo.id};
+	  var select = $('#tipo');		  
+	  console.log(x);
+	  
+	      select.find('option').remove();	      
+			      $.getJSON('../tipoproduto/listarJson',function(jsonResponse) {			    	  
+			    	  $('<option>').val(-1).text("Informe o tipo").appendTo(select);			    	  
+			              $.each(jsonResponse, function(key, value) {
+			            	  if(value.id==x){
+			            		  $('<option selected>').val(value.id).text(value.descricao).appendTo(select);
+			            	  }else{
+			            		  $('<option>').val(value.id).text(value.descricao).appendTo(select);  
+			            		}
+			                
+	       			      });
+		          }).done(function() {
+		        	  $(".chosen-select").chosen({no_results_text: "Oops, não tem produto!"}); 
+		          });			      
+	  }	
+   
+function CarregaGrupo(){	
+	
+	  	var x = ${produto.grupo.id};
+	  		var select = $('#grupo');
+	  		
+	      select.find('option').remove();	      
+			      $.getJSON('../grupoproduto/listarJson',function(jsonResponse) {			    	  
+			    	  $('<option>').val(-1).text("Informe o grupo").appendTo(select);			    	  
+			              $.each(jsonResponse, function(key, value) {
+			            	  if (value.id==x){
+			                	$('<option selected>').val(value.id).text(value.descricao).appendTo(select);  
+			            	  }else {
+			            		  $('<option>').val(value.id).text(value.descricao).appendTo(select);
+			            	  }
+	       			      });
+		          }).done(function() {
+		        	  $(".chosen-select").chosen({no_results_text: "Oops, não tem produto!"}); 
+		          });			      
+	  }	
 
-$( "[id*='excluir']" ).click(function(event) {
-    var data = $(event.delegateTarget).data();
-	var id = data.recordId; 
-	var descricao = data.recordDescricao;
-	swal({
-		  title: 'Excluir?',
-		  text: "Deseja excluir esse registro? (" + descricao + ")",
-		  icon: 'warning',
-		  buttons: [true, "Sim excluir!"]
-		}).then((result) => {
-		  if (result) {
-		       $.getJSON({
-				  url: "remover?produto.id="+id
-			   }).done(function( data ) {
-			    	  if (data.ret==1){
-			    		  $('#tr'+id).fadeOut(); 
-			    		  swal("Remover", data.mensagem, data.type);
-			    	  }
-			    	  else
-			    		  swal("Remover", "Ocorreu um erro ao remover", data.type);
-				}).fail(function() {
-					swal("Remover", "Ocorreu um erro ao remover", "error");
-				});
-		   }
-		})
-  });
 </script>
 <jsp:include page = "/mainfooter.inc.jsp" />

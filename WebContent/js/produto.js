@@ -1,11 +1,16 @@
 $(document).ready(function() {
-	if($("#tbeleicao").length){
-		   $('#tbeleicao').dataTable( {
+	
+	CarregaTipo();
+	CarregaGrupo();
+	
+	if($("#tbproduto").length){
+		   $('#tbproduto').dataTable( {
 		        "order": [[ 0, "des" ],[ 1, "des" ]]
-		   });
+	  });
     }
-	
-	
+});	
+
+
 	// CLICK DO BOTÃO EXCLUIR
 	$( "[id*='excluir']" ).click(function(event) {
 	    var data = $(event.delegateTarget).data();
@@ -36,4 +41,4 @@ $(document).ready(function() {
 	
 	
 	
-});
+
