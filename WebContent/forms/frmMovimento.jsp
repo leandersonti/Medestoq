@@ -6,32 +6,40 @@
 		<div class="card-header text-white bg-dark">Cadastrar Tipo Produto:</div>
 		<div class="card-body">
 
-			<form action="#" method="post" name="frmMovimento" id="" class="needs-validation_" novalidate>
+			<form action="#" method="post" name="frmMovimento" id="frmMovimento" class="needs-validation_" novalidate>
 				<s:if test='mov.id != null'>
-					<input type="hidden" id="" name="" value="${mov.id}">
+					<input type="hidden" id="" name="mov.id" value="${mov.id}">					
+					<input type="hidden" id="" name="mov.isRecebimento" value="${mov.isRecebimento}">
 				</s:if>
-	
+				
+				<s:if test='mov == null'> 
 				<label for="descricao">*Tipo Movimento:</label>				  			
 					<div class="form-check">
-					  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+					  <input class="form-check-input" type="radio" name="mov.isRecebimento" id="exampleRadios1" value="1" checked>
 					  <label class="form-check-label" for="exampleRadios1">
-					    Entrada
-					  </label>  
-					</div>    
+					    Entrada 
+					  </label>   
+					</div>     
 					<div class="form-check">
-					  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+					  <input class="form-check-input" type="radio" name="mov.isRecebimento" id="exampleRadios2" value="0">
 					  <label class="form-check-label" for="exampleRadios2">
 					    Saida
 					  </label>
-					</div>  
-				 
-				<div class="form-row">
-					<label for="descricao">*Descricao:</label> 
-					<input type="text" class="form-control" name="mov.motivo" placeholder="Informe uma descrição" required>
-					<div class="invalid-feedback">Por favor, informe uma descricao.</div>
-				</div>
-					<br>
-										
+					</div> 
+					<div class="form-row">
+						<label for="descricao">*Descricao:</label> 
+						<input type="text" class="form-control" name="mov.motivo" placeholder="Informe uma descrição" required>
+						<div class="invalid-feedback">Por favor, informe uma descricao.</div>
+					</div>					
+				</s:if>	
+				<s:else>
+					<div class="form-row">
+						<label for="descricao">*Descricao:</label> 
+						<input type="text" class="form-control" name="mov.motivo" value="${mov.motivo}" disabled>
+						<div class="invalid-feedback">Por favor, informe uma descricao.</div>
+					</div>	
+				</s:else>					 
+				 									
 				  <div class="form-row">
 			    <div class="table-responsive">
 			    <table class="table table-sm">
@@ -95,7 +103,7 @@ $(document).ready(function() {
 	
 	// CLICK DO BOTÃO SAVE	
 	$("#btnSave").click(function() {
-		var URL = ""; 
+		var URL = "adicionar"; 
 		if ( $('#id').length ) { URL = "atualizar"; }		
 		//if (verificaDados()){
 			 swal({
@@ -104,11 +112,11 @@ $(document).ready(function() {
 		         icon: 'warning',
 		         buttons: [true, "Salvar"]
 		         }).then((result) => {
-					if (result) {
-						console.log(frm);
+					if (result) {						
 						var frm = $("#frmMovimento").serialize();
+						console.log(frm);
 						$.getJSON({
-							url: URL,
+							url: URL, 
 							data: frm
 					    }).done(function( data ) {
 					    	//if(data.ret==1)

@@ -41,7 +41,7 @@ public class Movimento implements Serializable {
 	
 	@Column(name = "isRecebimento")
 	@NotNull
-	private Boolean isRecebimento;
+	private Integer isRecebimento;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dtMovimento")
@@ -57,7 +57,7 @@ public class Movimento implements Serializable {
 	
 	}	
 	
-	public Movimento(Integer id, Boolean isRecebimento, Date dtMovimento, String motivo, List<ItemMovimento> itens) {
+	public Movimento(Integer id, Integer isRecebimento, Date dtMovimento, String motivo, List<ItemMovimento> itens) {
 		super();
 		this.id = id;
 		this.isRecebimento = isRecebimento;
@@ -74,11 +74,11 @@ public class Movimento implements Serializable {
 		this.id = id;
 	}
 
-	public Boolean getIsRecebimento() {
+	public Integer getIsRecebimento() {
 		return isRecebimento;
 	}
 
-	public void setIsRecebimento(Boolean isRecebimento) {
+	public void setIsRecebimento(Integer isRecebimento) {
 		this.isRecebimento = isRecebimento;
 	}
 

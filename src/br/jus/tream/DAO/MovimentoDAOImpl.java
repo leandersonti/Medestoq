@@ -36,8 +36,8 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 	public Movimento getBean(int id) throws Exception {
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
 		Movimento movimento = new Movimento();
-		try {			
-			movimento = dao.getBean(id); 		
+		try {
+			movimento = dao.getBean(id);
 		} catch (Exception e) {
 			em.close();
 			e.printStackTrace();
@@ -46,7 +46,6 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 		}
 		return movimento;
 	}
-	
 
 	@Override
 	public int adicionar(Movimento movimento) throws Exception {
@@ -55,7 +54,9 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 			dao.adicionar(movimento);
 			ret = 1;
 		} catch (Exception e) {
-			// e.printStackTrace();
+			 e.printStackTrace();
+		}finally {
+			this.atualizarEstoque(movimento);
 		}
 		return ret;
 	}
@@ -71,24 +72,26 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 		}
 		return ret;
 	}
-	
+
 	@Override
-	public int adicionarItem(List<ItemMovimento> itens) throws Exception {
+	public int adicionarItem(Movimento movimento) throws Exception {
 		int ret = 0;
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
-		try {			
+		try {
 			
 			em.getTransaction().begin();
-			
-			for(ItemMovimento item : itens) {				
+
+			for (ItemMovimento item : movimento.getItens()) {
 				em.merge(item);
 			}
-			
+
 			em.getTransaction().commit();
 			em.close();
 			ret = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			this.atualizarEstoque(movimento);
 		}
 		return ret;
 	}
@@ -105,43 +108,69 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 		return ret;
 	}
 
+	@Override
+	public int atualizarEstoque(Movimento movimento) throws Exception {
+		int ret = 0;
+		try {
+			ProdutoDAO daoProd = ProdutoDAOImpl.getInstance();
+
+			for (ItemMovimento item : movimento.getItens()) {
+				Produto p = new Produto();
+				p = daoProd.getBean(item.getProduto().getId());
+
+				if (movimento.getIsRecebimento() == 1)
+					p.setQtdEstoque(p.getQtdEstoque() + item.getQtdItem());
+				else
+					p.setQtdEstoque(p.getQtdEstoque() - item.getQtdItem());
+
+				daoProd.atualizar(p);
+			}
+
+			ret = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+
 	public static void main(String[] args) throws Exception {
 		MovimentoDAO dao = MovimentoDAOImpl.getInstance();
-		Movimento movimento = new Movimento();			
-		Produto produto = new Produto();		
-		
+		Movimento movimento = new Movimento();
+		Produto produto = new Produto();
+
+		List<ItemMovimento> itens = new ArrayList<ItemMovimento>();
+
+		movimento.setDtMovimento(new Date(15));
+		movimento.setIsRecebimento(1);
+		movimento.setMotivo("teste sistema");
+
+		// movimento = dao.getBean(7); //itens = movimento.getItens();
+
+		ItemMovimento item1 = new ItemMovimento();
+		item1.setMovimento(movimento);
+		produto = ProdutoDAOImpl.getInstance().getBean(250);
+		item1.setProduto(produto);
+		item1.setQtdItem(100);
+
+		ItemMovimento item2 = new ItemMovimento();
+		item2.setMovimento(movimento);
+		produto = ProdutoDAOImpl.getInstance().getBean(251);
+		item2.setProduto(produto);
+		item2.setQtdItem(5);
+
+		itens.add(item1);
+		itens.add(item2);
+
+		movimento.setItens(itens);
+		int ret = dao.adicionar(movimento);
+		System.out.println("===" + ret);
+
 		/*
-		 * List<ItemMovimento> itens = new ArrayList<ItemMovimento>();
+		 * movimento = dao.getBean(7); int ret = dao.remover(movimento);
 		 * 
-		 * 
-		 * movimento.setDtMovimento(new Date(15));
-		 * movimento.setIsRecebimento(true);
-		 * movimento.setMotivo("teste sistema");
-		 * 
-		 * 
-		 * movimento = dao.getBean(7); //itens = movimento.getItens();
-		 * 
-		 * ItemMovimento item1 = new ItemMovimento(); 
-		 * item1.setMovimento(movimento);
-		 * produto = ProdutoDAOImpl.getInstance().getBean(240);
-		 * item1.setProduto(produto); item1.setQtdItem(10);
-		 * 
-		 * ItemMovimento item2 = new ItemMovimento(); 
-		 * item2.setMovimento(movimento);
-		 * produto = ProdutoDAOImpl.getInstance().getBean(234);
-		 * item2.setProduto(produto); item2.setQtdItem(20);
-		 * 
-		 * itens.add(item1); itens.add(item2);
-		 * 
-		 * //movimento.setItens(itens); int ret = dao.adicionarItem(itens);
 		 * System.out.println("==="+ret);
 		 */
-				
-		movimento = dao.getBean(7);
-		int ret = dao.remover(movimento);
-		
-		System.out.println("==="+ret);
-		
+
 		/*
 		 * for (Movimento s : dao.listar()) { System.out.println("===" +
 		 * s.getDescricao()); }

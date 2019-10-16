@@ -1,5 +1,6 @@
 package br.jus.tream.action;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,12 +86,21 @@ public class ActionMovimento extends ActionSupport{
 	public String doAdicionar() {
 		BeanResult beanResult = new BeanResult();
 		try {
-				beanResult.setRet(dao.adicionar(mov));
+			
+			List<ItemMovimento> itensTmp = new ArrayList<ItemMovimento>();
+			
+			 for(ItemMovimento item: this.itens) {
+				 item.setMovimento(mov);
+				 itensTmp.add(item);
+			 }
+			 mov.setDtMovimento(new Date(System.currentTimeMillis()));
+			 mov.setItens(itensTmp);			 
+			 beanResult.setRet(dao.adicionar(mov));			 			
+			 
 				if (beanResult.getRet() == 1) {
 					beanResult.setMensagem(getText("inserir.sucesso"));
 					beanResult.setType("success");
-				}
-				else {
+				} else {
 					beanResult.setMensagem(getText("inserir.error"));
 					beanResult.setType("error");
 				}
@@ -110,7 +120,8 @@ public class ActionMovimento extends ActionSupport{
 	public String doAdicionarItens() {
 		BeanResult beanResult = new BeanResult();
 		try {
-				beanResult.setRet(dao.adicionarItem(itens));
+				mov.setItens(itens);
+				beanResult.setRet(dao.adicionarItem(mov));
 				if (beanResult.getRet() == 1) {
 					beanResult.setMensagem(getText("inserir.sucesso"));
 					beanResult.setType("success");
