@@ -152,27 +152,22 @@ removeRow = function(handler) {
     return false; 
   };
 
-
  function verificaDados(){
+	 var ret = false;	
 	 
-	 var obj = $('select option:checked');
-	 var ret = true;	
+	 $('select option:checked').filter(function(){
+		 if($(this).attr('value')==-1){
+			 ret=true	 
+		 }						
+		}); 
 	 
-    if ($("#frmMovimento")[0].checkValidity()===false){
-    	$("#frmMovimento")[0].classList.add('was-validated');
-    	return false;
-    }else{
-    	$.each(obj, function(key, value) {            
-			if(value.value == -1){
-				ret=false
-			}			
-		 });    	    	
-    }	
-        	
-	return ret;   
- } 
+	    if ($("#frmMovimento")[0].checkValidity()===false || ret){
+	    	$("#frmMovimento")[0].classList.add('was-validated');
+	    	return false;
+	    }else  
+		   return true;
+	 }
 
-
-</script>
+</script> 
 	
 <jsp:include page="/mainfooter.inc.jsp" />
