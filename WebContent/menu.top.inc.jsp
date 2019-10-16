@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <!--  <a class="navbar-brand" href="#">AnaJÉ</a> -->
       <a class="navbar-brand" href="#">
-         <img class="topmnu" src="${pageContext.request.contextPath}/images/brasao2.gif" alt="AnaJé" width="60" height="60"> 
+         <img class="topmnu" src="${pageContext.request.contextPath}/images/brasao.png" alt="AnaJé" width="65" height="65"> 
         </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

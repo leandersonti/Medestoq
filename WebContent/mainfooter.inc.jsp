@@ -27,7 +27,7 @@
 	               <%}
 			   }	  
 			}catch (Exception e){ %>
-			       <span class="badge badge-pill badge-secondary"><i class="fa fa-lock" aria-hidden="true"></i> Sessão não iniciada</span>
+			       <span class="badge badge-pill btn-warning"><i class="fa fa-lock" aria-hidden="true"></i> Sessão não iniciada</span>
 		    <%	 
 		 	}
 			%>				
