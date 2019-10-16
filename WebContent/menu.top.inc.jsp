@@ -47,7 +47,7 @@
 	                <i class="fa fa-user-circle-o" aria-hidden="true"></i> <%=s.getTitulo() + "-" + s.getFirstName()%>
 	             </a>
 	            <div class="dropdown-menu" aria-labelledby="sessionmnu">
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/login/logout"><i class="fa fa-power-off" aria-hidden="true"></i> Sair</a>
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/login/logout"><i class="fa fa-power-off" aria-hidden="true"></i>Sair</a>
 	            </div>
 	            
 	            <%
