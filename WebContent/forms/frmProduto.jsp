@@ -7,12 +7,12 @@
 		<div class="card-body">
 
 			<form action="#" method="post" name="frmProduto" id="frmProduto" class="needs-validation_" novalidate>
-				<s:if test='grupoProduto.id != null'>
+				<s:if test='produto.id != null'>
 					<input type="hidden" id="id" name="produto.id" value="${produto.id}">
 				</s:if>
 				<div class="form-row">
 					<label for="descricao">*Descrição:</label> 
-					<input type="text" class="form-control" id="descricao" name="produto.descricao" placeholder="Informe uma descrição" value="${grupoProduto.descricao}" required>
+					<input type="text" class="form-control" id="descricao" name="produto.descricao" placeholder="Informe uma descrição" value="${produto.descricao}" required>
 					<div class="invalid-feedback">Por favor, informe uma descricao.</div>
 				</div>
 				
@@ -27,6 +27,7 @@
 
 //CLICK DO BOTÃO SAVE	
 $("#btnSave").click(function() {
+	console.log("Teste")
 	var URL = "adicionar"; 
 	if ( $('#id').length ) { URL = "atualizar"; }
 

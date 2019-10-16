@@ -26,7 +26,7 @@ $(document).ready(function() {
 				    		  swal("Remover", data.mensagem, data.type);
 				    	  }
 				    	  else
-				    	  swal("Remover", "Ocorreu um erro ao remover", data.type);
+				    		  swal("Remover", "Ocorreu um erro ao remover", data.type);
 					}).fail(function() {
 						swal("Remover", "Ocorreu um erro ao remover", "error");
 					});

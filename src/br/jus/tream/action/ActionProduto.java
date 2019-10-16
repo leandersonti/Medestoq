@@ -14,7 +14,6 @@ import br.jus.tream.DAO.ProdutoDAO;
 import br.jus.tream.DAO.ProdutoDAOImpl;
 import br.jus.tream.dominio.BeanResult;
 import br.jus.tream.dominio.Produto;
-import br.jus.tream.dominio.TipoProduto;
 
 @SuppressWarnings("serial")
 @Namespace("/produto")
@@ -40,7 +39,7 @@ public class ActionProduto extends ActionSupport{
 		return "success";
 	}
 	
-	@Action(value = "listarJson", results = { @Result(name = "success", type = "json", params = { "root", "lstProduto" }),
+	@Action(value = "listarJson", results = { @Result(name = "success", type = "json", params = { "root", "LstProduto" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
 	//, interceptorRefs = @InterceptorRef("authStack")
 	)
@@ -54,7 +53,7 @@ public class ActionProduto extends ActionSupport{
 		return "success";
 	}
 
-	@Action(value = "listarCbx", results = { @Result(name = "success", type = "json", params = { "root", "lstProduto" }),
+	@Action(value = "listarCbx", results = { @Result(name = "success", type = "json", params = { "root", "LstProduto" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
 	//, interceptorRefs = @InterceptorRef("authStack")
 	)
@@ -72,7 +71,7 @@ public class ActionProduto extends ActionSupport{
 			@Result(name = "error", location = "/pages/error.jsp") }
 	 //, interceptorRefs = @InterceptorRef("authStack")
 	)
-	public String frmCadEleicao() {	
+	public String frmProduto() {	
 		return "success";
 	}
 	
@@ -140,7 +139,7 @@ public class ActionProduto extends ActionSupport{
 	
 	@Action(value = "remover", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+	   		//, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();
@@ -153,7 +152,7 @@ public class ActionProduto extends ActionSupport{
 				beanResult.setType("success");
 		 } catch (Exception e) {
 			addActionError(getText("remover.error") + " Error: " + e.getMessage());
-			// r.setMensagem(getText("remover.error") + " Error: " + e.getMessage());
+			//r.setMensagem(getText("remover.error") + " Error: " + e.getMessage());
 			return "error";
 		}
 		this.result = beanResult;
@@ -164,8 +163,8 @@ public class ActionProduto extends ActionSupport{
 		return LstProduto;
 	}
 
-	public void setLstProduto(List<Produto> lstProduto) {
-		this.LstProduto = lstProduto;
+	public void setLstProduto(List<Produto> LstProduto) {
+		this.LstProduto = LstProduto;
 	}
 
 	public Produto getProduto() {

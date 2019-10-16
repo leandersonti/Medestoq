@@ -50,5 +50,34 @@
 
 <jsp:include page = "/javascripts.jsp" />
 <script src="${pageContext.request.contextPath}/js/produto.js" charset="utf-8"></script>
+<script type="text/javascript">
 
+
+$( "[id*='excluir']" ).click(function(event) {
+    var data = $(event.delegateTarget).data();
+	var id = data.recordId; 
+	var descricao = data.recordDescricao;
+	swal({
+		  title: 'Excluir?',
+		  text: "Deseja excluir esse registro? (" + descricao + ")",
+		  icon: 'warning',
+		  buttons: [true, "Sim excluir!"]
+		}).then((result) => {
+		  if (result) {
+		       $.getJSON({
+				  url: "remover?produto.id="+id
+			   }).done(function( data ) {
+			    	  if (data.ret==1){
+			    		  $('#tr'+id).fadeOut(); 
+			    		  swal("Remover", data.mensagem, data.type);
+			    	  }
+			    	  else
+			    		  swal("Remover", "Ocorreu um erro ao remover", data.type);
+				}).fail(function() {
+					swal("Remover", "Ocorreu um erro ao remover", "error");
+				});
+		   }
+		})
+  });
+</script>
 <jsp:include page = "/mainfooter.inc.jsp" />

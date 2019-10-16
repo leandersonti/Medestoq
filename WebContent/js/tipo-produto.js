@@ -11,6 +11,7 @@ $(document).ready(function() {
 	    var data = $(event.delegateTarget).data();
 		var id = data.recordId; 
 		var descricao = data.recordDescricao;
+		
 		swal({
 			  title: 'Excluir?',
 			  text: "Deseja excluir esse registro? (" + descricao + ")",
@@ -19,7 +20,7 @@ $(document).ready(function() {
 			}).then((result) => {
 			  if (result) {
 			       $.getJSON({
-					  url: "remover?grupoProduto.id="+id
+					  url: "remover?tipoProduto.id="+id
 				   }).done(function( data ) {
 				    	  if (data.ret==1){
 				    		  $('#tr'+id).fadeOut(); 
