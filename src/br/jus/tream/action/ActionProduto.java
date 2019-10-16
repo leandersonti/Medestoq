@@ -145,7 +145,9 @@ public class ActionProduto extends ActionSupport{
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();
 		beanResult.setRet(0);
-		try {
+		try {	
+				produto = dao.getBean(this.produto.getId());
+				
 				beanResult.setRet(dao.remover(this.produto));
 				beanResult.setMensagem(getText("remover.sucesso"));
 				beanResult.setType("success");

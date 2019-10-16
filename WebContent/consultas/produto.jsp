@@ -6,7 +6,7 @@
 <div class="container">
      
 <div class="card">
-  <div class="card-header">Grupo de Produtos</div>
+  <div class="card-header">Produtos</div>
   <div class="card-body">
   
     <table id="tbeleicao" class="table table-sm table-hover">

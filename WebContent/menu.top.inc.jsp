@@ -16,9 +16,12 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/">MedEstoq<span class="sr-only">(current)</span></a>
           </li>
           
-          <li class="nav-item ${produtos}">             
-             <a class="nav-link" href="${pageContext.request.contextPath}/produto/listar" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Produtos</a>	              
-	                          		             		                               	              	             
+          <li class="nav-item ${produtos}">
+             <a class="nav-link" href="${pageContext.request.contextPath}/produto/listar" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Produtos</a>
+          </li>
+          
+          <li class="nav-item ${movimento}">
+             <a class="nav-link" href="${pageContext.request.contextPath}/movimento/frmCad" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Movimento</a>	              	                          		             		                               	              	            
           </li>
     
             <li class="nav-item dropdown">
@@ -26,8 +29,8 @@
 	            <div class="dropdown-menu" aria-labelledby="dropdown01">
 	              <a class="dropdown-item" href="${pageContext.request.contextPath}/tipoproduto/listar">Tipos de produtos</a>
 	              <a class="dropdown-item" href="${pageContext.request.contextPath}/undmedida/listar">Und de Medidas</a>
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/#">Grupos</a>
-	              
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/movimento/listar">Movimentos</a>
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/grupoproduto/listar">Grupos</a>	              
 	            </div>
 	          </li>        
               

@@ -19,14 +19,14 @@ $(document).ready(function() {
 			}).then((result) => {
 			  if (result) {
 			       $.getJSON({
-					  url: "remover?grupoProduto.id="+id
+					  url: "remover?produto.id="+id
 				   }).done(function( data ) {
-				    	  //if (data.ret==1){
-				    		//  $('#tr'+id).fadeOut(); 
+				    	  if (data.ret==1){
+				    		  $('#tr'+id).fadeOut(); 
 				    		  swal("Remover", data.mensagem, data.type);
-				    	  //}
-				    	  //else
-				    		//  swal("Remover", "Ocorreu um erro ao remover", data.type);
+				    	  }
+				    	  else
+				    	  swal("Remover", "Ocorreu um erro ao remover", data.type);
 					}).fail(function() {
 						swal("Remover", "Ocorreu um erro ao remover", "error");
 					});

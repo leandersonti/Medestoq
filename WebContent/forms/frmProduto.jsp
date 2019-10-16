@@ -3,7 +3,7 @@
 <div class="container">
 
 	<div class="card">
-		<div class="card-header text-white bg-dark">Grupo de Produtos</div>
+		<div class="card-header text-white bg-dark">Produtos</div>
 		<div class="card-body">
 
 			<form action="#" method="post" name="frmProduto" id="frmProduto" class="needs-validation_" novalidate>
