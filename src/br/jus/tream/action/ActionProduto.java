@@ -20,7 +20,7 @@ import br.jus.tream.dominio.Produto;
 @ResultPath(value = "/")
 @ParentPackage(value = "default")
 public class ActionProduto extends ActionSupport{
-	private List<Produto> LstProduto;
+	private List<Produto> lstProduto;
 	private Produto produto;
 	private BeanResult result;
 	private final static ProdutoDAO dao = ProdutoDAOImpl.getInstance();
@@ -31,7 +31,7 @@ public class ActionProduto extends ActionSupport{
 	)
 	public String listar() {
 		try {
-			this.LstProduto = dao.listar();
+			this.lstProduto = dao.listar(produto.getTipo().getId(), produto.getGrupo().getId());
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -39,13 +39,27 @@ public class ActionProduto extends ActionSupport{
 		return "success";
 	}
 	
-	@Action(value = "listarJson", results = { @Result(name = "success", type = "json", params = { "root", "LstProduto" }),
+	@Action(value = "listarJsonByTipoGrupo", results = { @Result(name = "success", type = "json", params = { "root", "lstProduto" }),
+			@Result(name = "error", location = "/pages/resultAjax.jsp") }
+	//, interceptorRefs = @InterceptorRef("authStack")
+	)
+	public String listarByTipoGrupo() {
+		try {
+			this.lstProduto = dao.listar(produto.getTipo().getId(), produto.getGrupo().getId());
+		} catch (Exception e) {
+			addActionError(getText("listar.error"));
+			return "error";
+		}
+		return "success";
+	}
+	
+	@Action(value = "listarJson", results = { @Result(name = "success", type = "json", params = { "root", "lstProduto" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
 	//, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listarJson() {
 		try {
-			this.LstProduto = dao.listar();
+			this.lstProduto = dao.listar();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -59,7 +73,7 @@ public class ActionProduto extends ActionSupport{
 	)
 	public String listarCdx() {
 		try {
-			this.LstProduto = dao.listarCbx();
+			this.lstProduto = dao.listarCbx();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
@@ -158,13 +172,13 @@ public class ActionProduto extends ActionSupport{
 		this.result = beanResult;
 	  return "success";
 	}	 
-
+	
 	public List<Produto> getLstProduto() {
-		return LstProduto;
+		return lstProduto;
 	}
 
-	public void setLstProduto(List<Produto> LstProduto) {
-		this.LstProduto = LstProduto;
+	public void setLstProduto(List<Produto> lstProduto) {
+		this.lstProduto = lstProduto;
 	}
 
 	public Produto getProduto() {

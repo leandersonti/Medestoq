@@ -44,7 +44,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 		List<Produto> produtos = null;
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
 		try {						
-			 TypedQuery<Produto> query = em.createQuery("SELECT c FROM Produto c WHERE c.txProduto LIKE ?1", Produto.class);
+			 TypedQuery<Produto> query = em.createQuery("SELECT c FROM Produto c WHERE c.descricao LIKE ?1", Produto.class);
 			 produtos = query.setParameter(1, "%" + vdesc + "%").getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,13 +134,13 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 		List<Produto> lista = null;
 		EntityManager em = EntityManagerProvider.getInstance().createManager();
 		try {
-			String sql =  "SELECT NEW Produto(c.id, c.descricao, c.qtdEstoque, c.qtdMinima, c.dtValidade, c.unidadeMedida, c.tipoProduto) "
-			  		+ "FROM Produto c WHERE";
+			String sql =  "SELECT NEW Produto(c.id, c.descricao, c.qtdEstoque, c.qtdMinima, c.dtValidade, c.unidadeMedida, c.tipo) "
+			  		+ "FROM Produto c WHERE 1=1";
 			  		if (tipo > 0) {
-			  			sql += "  c.tipoProduto.id=:tipo";
+			  			sql += " AND c.tipo.id=:tipo";
 			  		}
 					if (grupo > 0 ) {
-			  			sql += " c.grupoProduto.id=:grupo";
+			  			sql += " AND c.grupo.id=:grupo";
 			  		}
 					sql += " ORDER BY c.descricao";
 				TypedQuery<Produto> query = em.createQuery(sql, Produto.class);

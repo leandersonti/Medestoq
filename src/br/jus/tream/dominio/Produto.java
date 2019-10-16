@@ -49,11 +49,11 @@ public class Produto implements Serializable {
 
 	@ManyToOne()
 	@JoinColumn(name = "fkGrupoProduto")
-	private GrupoProduto grupoProduto;
+	private GrupoProduto grupo;
 
 	@ManyToOne()
 	@JoinColumn(name = "fkTipoProduto")
-	private TipoProduto tipoProduto;
+	private TipoProduto tipo;
 	
 	@Transient
 	private String estilo;
@@ -101,8 +101,6 @@ public class Produto implements Serializable {
 			estilo = "bg-danger";
 			this.status = "Vencido";
 		}
-		
-				
 
 	}
 	
@@ -115,8 +113,8 @@ public class Produto implements Serializable {
 		this.qtdMinima = qtdMinima;
 		this.dtValidade = dtValidade;
 		this.unidadeMedida = unidadeMedida;
-		this.grupoProduto = grupoProduto;
-		this.tipoProduto = tipoProduto;
+		this.grupo = grupoProduto;
+		this.tipo = tipoProduto;
 	}
 	
 	public String getEstilo() {
@@ -174,23 +172,23 @@ public class Produto implements Serializable {
 	public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
 		this.unidadeMedida = unidadeMedida;
 	}
-
-	public GrupoProduto getGrupoProduto() {
-		return grupoProduto;
-	}
-
-	public void setGrupoProduto(GrupoProduto grupoProduto) {
-		this.grupoProduto = grupoProduto;
-	}
-
-	public TipoProduto getTipoProduto() {
-		return tipoProduto;
-	}
-
-	public void setTipoProduto(TipoProduto tipoProduto) {
-		this.tipoProduto = tipoProduto;
-	}
 	
+	public GrupoProduto getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(GrupoProduto grupo) {
+		this.grupo = grupo;
+	}
+
+	public TipoProduto getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoProduto tipo) {
+		this.tipo = tipo;
+	}
+
 	public String getStatus() {
 		return status;
 	}
