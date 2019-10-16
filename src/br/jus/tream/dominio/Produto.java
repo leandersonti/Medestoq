@@ -1,31 +1,22 @@
 package br.jus.tream.dominio;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
-/**
- * 
- * @author Ederson
- * 
- * @Description Classe principal do sistema, um produto e suas informaes,
- *              gerencivel pelo usurio.
- *
- */
 @Entity
 @Table(name = "tb_produto")
 public class Produto implements Serializable {
@@ -62,9 +53,15 @@ public class Produto implements Serializable {
 
 	@ManyToOne()
 	@JoinColumn(name = "fkTipoProduto")
-	private TipoProduto tipoProduto;	
+	private TipoProduto tipoProduto;
 	
-	public Produto() {	
+	@Transient
+	private String estilo;
+	
+	@Transient
+	private String status;
+	
+	public Produto() {
 	}
 	
 	public Produto(Integer id, String descricao) {
@@ -72,7 +69,43 @@ public class Produto implements Serializable {
 		this.id = id;
 		this.descricao = descricao;
 	}
+	
+	public Produto(Integer id, String descricao, Integer qtdEstoque, Integer qtdMinima, Date dtValidade,
+			UnidadeMedida unidadeMedida, TipoProduto tipoProduto) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.qtdEstoque = qtdEstoque;
+		this.qtdMinima = qtdMinima;
+		this.dtValidade = dtValidade;
+		this.unidadeMedida = unidadeMedida;
+		this.estilo = "";
+		
+		if (this.qtdEstoque <= this.qtdMinima) {
+			this.estilo = "bg-warning";
+			this.status = "Estoque baixo";
+		}
+		
+		Date dtVenc = this.dtValidade;
+		Calendar dtAviso = Calendar.getInstance();
+		dtAviso.setTime(dtVenc);
+		dtAviso.set(Calendar.MONTH, dtAviso.get(Calendar.MONTH) - 2);
+		Calendar hojeCal = Calendar.getInstance();
+		if (hojeCal.equals(dtAviso) || hojeCal.after(dtAviso)) {
+			estilo = "bg-success";
+			this.status = "Vencimento em breve";
+		}
+		
+		Date hoje = new Date();
+		if (hoje.compareTo(dtValidade) > 0) {
+			estilo = "bg-danger";
+			this.status = "Vencido";
+		}
+		
+				
 
+	}
+	
 	public Produto(Integer id, String descricao, Integer qtdEstoque, Integer qtdMinima, Date dtValidade,
 			UnidadeMedida unidadeMedida, GrupoProduto grupoProduto, TipoProduto tipoProduto) {
 		super();
@@ -84,6 +117,14 @@ public class Produto implements Serializable {
 		this.unidadeMedida = unidadeMedida;
 		this.grupoProduto = grupoProduto;
 		this.tipoProduto = tipoProduto;
+	}
+	
+	public String getEstilo() {
+		return estilo;
+	}
+
+	public void setEstilo(String estilo) {
+		this.estilo = estilo;
 	}
 
 	public Integer getId() {
@@ -148,6 +189,14 @@ public class Produto implements Serializable {
 
 	public void setTipoProduto(TipoProduto tipoProduto) {
 		this.tipoProduto = tipoProduto;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override

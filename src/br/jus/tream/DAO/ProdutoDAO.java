@@ -12,6 +12,8 @@ public interface ProdutoDAO {
 	
 	public List<Produto> listar(String vdesc) throws Exception;
 	
+	public List<Produto> listar(Integer tipo, Integer grupo) throws Exception;
+	
 	public Produto getBean(int id) throws Exception;
 	
 	public int adicionar (Produto produto) throws Exception;

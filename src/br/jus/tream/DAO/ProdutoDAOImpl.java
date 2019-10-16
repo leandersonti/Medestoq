@@ -129,6 +129,36 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			}
 		return lista;	
 	}
+	
+	public List<Produto> listar(Integer tipo, Integer grupo) throws Exception{ 
+		List<Produto> lista = null;
+		EntityManager em = EntityManagerProvider.getInstance().createManager();
+		try {
+			String sql =  "SELECT NEW Produto(c.id, c.descricao, c.qtdEstoque, c.qtdMinima, c.dtValidade, c.unidadeMedida, c.tipoProduto) "
+			  		+ "FROM Produto c WHERE";
+			  		if (tipo > 0) {
+			  			sql += "  c.tipoProduto.id=:tipo";
+			  		}
+					if (grupo > 0 ) {
+			  			sql += " c.grupoProduto.id=:grupo";
+			  		}
+					sql += " ORDER BY c.descricao";
+				TypedQuery<Produto> query = em.createQuery(sql, Produto.class);
+			  	if (tipo > 0) {
+		  			query.setParameter("tipo", tipo);
+		  		}
+				if (grupo > 0) {
+					query.setParameter("grupo", grupo);
+		  		}			  
+			  lista = query.getResultList();
+		  }
+		  catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				em.close();
+			}
+		return lista;	
+	}
 	 
 	public byte[] readBytes(File file) throws IOException {
 		ByteArrayOutputStream ous = null;
@@ -160,7 +190,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
     
 	public static void main(String[] args) throws Exception{
 		ProdutoDAO dao = ProdutoDAOImpl.getInstance();
-
+		/*
 		GrupoProduto grp = new GrupoProduto();
 		grp = GrupoProdutoDAOImpl.getInstance().getBean(2);
 		
@@ -186,7 +216,11 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 		int ret = dao.adicionar(p0);
 		
 		System.out.println("Ret = " + ret);
+		*/
 		
+		for (Produto p : dao.listar(0, 3)) {
+			System.out.println("desc " + p.getDescricao() + " " + p.getQtdEstoque() + "/" + p.getQtdMinima() + " estilo=" + p.getEstilo());
+		}
 		
 		System.out.println("Done!!!");
 				
