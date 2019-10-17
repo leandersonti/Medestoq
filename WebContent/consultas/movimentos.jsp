@@ -6,7 +6,7 @@
 <div class="container">
      
 <div class="card">
-  <div class="card-header">Data Eleição</div>
+  <div class="card-header">Movimentos</div>
   <div class="card-body">
   
     <table id="tbmovimento" class="table table-sm table-hover">
@@ -23,7 +23,7 @@
 	<tbody>
 	<s:iterator value="lstMovimento">
 		<tr id="tr${id}">
-		    <td><s:property value="dtMovimento"/></td>
+		    <td><s:property value="%{getText('format.date',{dtMovimento})}"/></td>
 			<td><s:property value="isRecebimento"/></td>
 			<td><s:property value="motivo"/></td>		
 			<td>  		    
