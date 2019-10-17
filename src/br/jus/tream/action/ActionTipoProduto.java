@@ -151,11 +151,11 @@ public class ActionTipoProduto extends ActionSupport{
 		this.lstTipoProduto = lstTipoProduto;
 	}
 
-	public TipoProduto getTipoproduto() {
+	public TipoProduto getTipoProduto() {
 		return tipoproduto;
 	}
 
-	public void setTipoproduto(TipoProduto tipoproduto) {
+	public void setTipoProduto(TipoProduto tipoproduto) {
 		this.tipoproduto = tipoproduto;
 	}
 

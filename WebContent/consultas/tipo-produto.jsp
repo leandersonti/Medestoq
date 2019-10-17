@@ -9,7 +9,7 @@
   <div class="card-header text-white bg-dark" style="color:white;">Tipo do Produto</div>
   <div class="card-body">
   
-    <table id="tbeleicao" class="table table-sm table-hover">
+    <table id="tbtipo" class="table table-sm table-hover">
 	<thead>
 		<tr>
 			<th width="2%">Código</th>

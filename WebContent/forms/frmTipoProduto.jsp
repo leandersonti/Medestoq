@@ -8,7 +8,7 @@
 
 			<form action="#" method="post" name="frmTipoProduto" id="frmTipoProduto" class="needs-validation_" novalidate>
 					<s:if test='tipoproduto.id != null'>
-					<input type="hidden" id="id" name="tipoproduto.id" value="${tipoProduto.id}">
+					<input type="hidden" id="id" name="tipoproduto.id" value="${tipoproduto.id}">
 				</s:if>
 	
 				<div class="form-row">

@@ -11,12 +11,12 @@
     
   		<div class="col-md-4">
       <select id="tipo" name="produto.tipo.id" class="form-control">
-        <option selected>Selecione um tipo</option>        
+        <option value="-1" selected>Selecione um tipo</option>        
       </select>
       </div>
       <div class="col-md-4">
       <select id="grupo" name="produto.grupo.id" class="form-control">
-        <option selected>Selecione um grupo</option>        
+        <option value="-1" selected>Selecione um grupo</option>        
       </select>
       </div>
       <button type="submit" class="btn btn-primary">Consultar</button>
@@ -78,9 +78,9 @@
 <script>
 
 function CarregaTipo(){	
-	var x = ${produto.tipo.id};
+	var x = "${produto.tipo.id}";
 	  var select = $('#tipo');		  
-	  console.log(x);
+
 	  
 	      select.find('option').remove();	      
 			      $.getJSON('../tipoproduto/listarJson',function(jsonResponse) {			    	  
@@ -100,7 +100,7 @@ function CarregaTipo(){
    
 function CarregaGrupo(){	
 	
-	  	var x = ${produto.grupo.id};
+	  	var x = '${produto.grupo.id}';
 	  		var select = $('#grupo');
 	  		
 	      select.find('option').remove();	      
