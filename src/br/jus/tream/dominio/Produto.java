@@ -82,7 +82,7 @@ public class Produto implements Serializable {
 		this.estilo = "";
 		
 		if (this.qtdEstoque <= this.qtdMinima) {
-			this.estilo = "bg-warning";
+			this.estilo = "warning";
 			this.status = "Estoque baixo";
 		}
 		
@@ -92,13 +92,13 @@ public class Produto implements Serializable {
 		dtAviso.set(Calendar.MONTH, dtAviso.get(Calendar.MONTH) - 2);
 		Calendar hojeCal = Calendar.getInstance();
 		if (hojeCal.equals(dtAviso) || hojeCal.after(dtAviso)) {
-			estilo = "bg-success";
+			estilo = "success";
 			this.status = "Vencimento em breve";
 		}
 		
 		Date hoje = new Date();
 		if (hoje.compareTo(dtValidade) > 0) {
-			estilo = "bg-danger";
+			estilo = "danger";
 			this.status = "Vencido";
 		}
 

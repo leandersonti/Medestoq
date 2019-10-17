@@ -9,7 +9,7 @@ public interface MovimentoDAO {
 	
 	public List<Movimento> listar() throws Exception;
 		
-	public Movimento getBean(int id) throws Exception;
+	public Movimento getBean(int id) throws Exception;	
 	
 	public int adicionar (Movimento movimento) throws Exception;	
 	

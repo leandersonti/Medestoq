@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -26,12 +27,21 @@ public class ActionMovimento extends ActionSupport{
 	private List<Movimento> lstMovimento;	
 	private Movimento mov;
 	private BeanResult result;
+	private ItemMovimento itemMov;
+	public ItemMovimento getItemMov() {
+		return itemMov;
+	}
+
+	public void setItemMov(ItemMovimento itemMov) {
+		this.itemMov = itemMov;
+	}
+
 	private List<ItemMovimento> itens = new ArrayList<ItemMovimento>();
 	private final static MovimentoDAO dao = MovimentoDAOImpl.getInstance();
 	
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/movimentos.jsp"),
-			@Result(name = "error", location = "/result.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/result.jsp")},
+			interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listar() {
 		try {
@@ -58,16 +68,16 @@ public class ActionMovimento extends ActionSupport{
 	}
 	
 	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmMovimento.jsp"),
-			@Result(name = "error", location = "/pages/error.jsp") }
-	 //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/error.jsp") }, 
+	 interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String frmCadMovimento() {	
 		return "success";
 	}
 	
 	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmMovimento.jsp"),
-			@Result(name = "error", location = "/pages/error.jsp")}
-	 //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/error.jsp")}, 
+	 interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doFrmEditar() {
 		try {
@@ -80,8 +90,8 @@ public class ActionMovimento extends ActionSupport{
 	}
 	
 	@Action(value = "adicionar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	  //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp")}, 
+	  interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doAdicionar() {
 		BeanResult beanResult = new BeanResult();
@@ -114,8 +124,8 @@ public class ActionMovimento extends ActionSupport{
 	}
 	
 	@Action(value = "adicionarItens", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	  //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp")}, 
+	  interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doAdicionarItens() {
 		BeanResult beanResult = new BeanResult();
@@ -140,8 +150,8 @@ public class ActionMovimento extends ActionSupport{
 	}
 	
 	@Action(value = "atualizar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	  //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp") }, 
+			interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doAtualizar() {
 		BeanResult beanResult = new BeanResult();
@@ -162,10 +172,25 @@ public class ActionMovimento extends ActionSupport{
 		return "success";
 	}
 	
+	@Action(value = "getBeanLimpo", results = { @Result(name = "success", location = "/consultas/situacao-modal.jsp"),
+			@Result(name = "error", location = "/pages/error.jsp") })
+	public String getBeanLimpo() {
+		try {
+			System.out.println("entrei aqui");
+			this.mov = dao.getBean(this.mov.getId());
+		} catch (Exception e) {
+			addActionError(getText("getbean.error"));
+			return "error";
+		}
+		return "success";
+	}
+	
 	@Action(value = "remover", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp")}, 
+			interceptorRefs = @InterceptorRef("authStack")
 	)
+	
+	
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();
 		beanResult.setRet(0);
