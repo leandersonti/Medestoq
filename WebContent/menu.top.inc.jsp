@@ -16,11 +16,11 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/">MedEstoq<span class="sr-only">(current)</span></a>
           </li>
           
-          <li class="nav-item ${produtos}">
+          <li class="nav-item ${product}">
              <a class="nav-link" href="${pageContext.request.contextPath}/produto/listar" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Produtos</a>
           </li>
           
-          <li class="nav-item ${movimento}">
+          <li class="nav-item ${moviment}">
              <a class="nav-link" href="${pageContext.request.contextPath}/movimento/frmCad" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Movimento</a>	              	                          		             		                               	              	            
           </li>
     

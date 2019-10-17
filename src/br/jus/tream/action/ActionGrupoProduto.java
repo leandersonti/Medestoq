@@ -3,6 +3,7 @@ package br.jus.tream.action;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -26,8 +27,8 @@ public class ActionGrupoProduto extends ActionSupport{
 	private final static GrupoProdutoDAO dao = GrupoProdutoDAOImpl.getInstance();
 	
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/grupos.jsp"),
-			@Result(name = "error", location = "/result.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/result.jsp")}, 
+			interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listar() {
 		try {
@@ -54,16 +55,16 @@ public class ActionGrupoProduto extends ActionSupport{
 	}
 	
 	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmGrupoProduto.jsp"),
-			@Result(name = "error", location = "/pages/error.jsp") }
-	 //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/error.jsp") }, 
+			interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String frmCadEleicao() {	
 		return "success";
 	}
 	
 	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmGrupoProduto.jsp"),
-			@Result(name = "error", location = "/pages/error.jsp")}
-	 //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/error.jsp")}, 
+	 interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doFrmEditar() {
 		try {
@@ -76,8 +77,8 @@ public class ActionGrupoProduto extends ActionSupport{
 	}
 	
 	@Action(value = "adicionar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	  //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp")}, 
+	interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String Adicionar() {
 		BeanResult beanResult = new BeanResult();
@@ -102,8 +103,8 @@ public class ActionGrupoProduto extends ActionSupport{
 	}
 	
 	@Action(value = "atualizar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	  //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp") }, 
+	  interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doAtualizar() {
 		BeanResult beanResult = new BeanResult();
@@ -125,8 +126,8 @@ public class ActionGrupoProduto extends ActionSupport{
 	}
 	
 	@Action(value = "remover", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp")}, 
+			interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();

@@ -3,6 +3,7 @@ package br.jus.tream.action;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -26,8 +27,8 @@ public class ActionProduto extends ActionSupport{
 	private final static ProdutoDAO dao = ProdutoDAOImpl.getInstance();
 	
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/produto.jsp"),
-			@Result(name = "error", location = "/result.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/result.jsp")}, 
+	   interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listar() {
 		try {
@@ -73,7 +74,7 @@ public class ActionProduto extends ActionSupport{
 
 	@Action(value = "listarCbx", results = { @Result(name = "success", type = "json", params = { "root", "LstProduto" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	//, interceptorRefs = @InterceptorRef("authStack")
+	, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listarCdx() {
 		try {
@@ -87,7 +88,7 @@ public class ActionProduto extends ActionSupport{
 	
 	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmProduto.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp") }
-	 //, interceptorRefs = @InterceptorRef("authStack")
+	 , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String frmProduto() {	
 		return "success";
@@ -95,7 +96,7 @@ public class ActionProduto extends ActionSupport{
 	
 	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmProduto.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp")}
-	 //, interceptorRefs = @InterceptorRef("authStack")
+	 , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doFrmEditar() {
 		try {
@@ -109,7 +110,7 @@ public class ActionProduto extends ActionSupport{
 	
 	@Action(value = "adicionar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	  //, interceptorRefs = @InterceptorRef("authStack")
+	  , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doAdicionar() {
 		BeanResult beanResult = new BeanResult();
@@ -134,7 +135,7 @@ public class ActionProduto extends ActionSupport{
 	
 	@Action(value = "atualizar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	  //, interceptorRefs = @InterceptorRef("authStack")
+	  , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doAtualizar() {
 		BeanResult beanResult = new BeanResult();
@@ -157,7 +158,7 @@ public class ActionProduto extends ActionSupport{
 	
 	@Action(value = "remover", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	   		//, interceptorRefs = @InterceptorRef("authStack")
+	   		, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();

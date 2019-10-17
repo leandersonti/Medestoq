@@ -3,6 +3,7 @@ package br.jus.tream.action;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -27,7 +28,7 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/tipo-produto.jsp"),
 			@Result(name = "error", location = "/result.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+	  , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listar() {
 		try {
@@ -55,7 +56,7 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmTipoProduto.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp") }
-	 //, interceptorRefs = @InterceptorRef("authStack")
+	 , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String frmCadEleicao() {	
 		return "success";
@@ -63,12 +64,15 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmTipoProduto.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp")}
-	 //, interceptorRefs = @InterceptorRef("authStack")
-	)
+	, interceptorRefs = @InterceptorRef("authStack")
+	)	
 	public String doFrmEditar() {
-		try {
-			this.tipoproduto = dao.getBean(this.tipoproduto.getId());
+		try {			
+			
+			this.tipoproduto = TipoProdutoDAOImpl.getInstance().getBean(this.tipoproduto.getId());
+			
 		} catch (Exception e) {
+			e.printStackTrace();
 			addActionError(getText("frmsetup.error") + " Error: " + e.getMessage());
 			return "error";
 		}
@@ -77,9 +81,9 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "adicionar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	  //, interceptorRefs = @InterceptorRef("authStack")
+	  , interceptorRefs = @InterceptorRef("authStack")
 	)
-	public String doAdicionar() {
+	public String doAdicionar() { 
 		BeanResult beanResult = new BeanResult();
 		try {
 				beanResult.setRet(dao.adicionar(tipoproduto));
@@ -102,7 +106,7 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "atualizar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	  //, interceptorRefs = @InterceptorRef("authStack")
+	  , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doAtualizar() {
 		BeanResult beanResult = new BeanResult();
@@ -125,7 +129,7 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "remover", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	   //, interceptorRefs = @InterceptorRef("authStack")
+	   , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();
@@ -165,4 +169,15 @@ public class ActionTipoProduto extends ActionSupport{
 	public void setResult(BeanResult result) {
 		this.result = result;
 	}
+
+	public TipoProduto getTipoproduto() {
+		return tipoproduto;
+	}
+
+	public void setTipoproduto(TipoProduto tipoproduto) {
+		this.tipoproduto = tipoproduto;
+	}
+	
+	
+	
 }

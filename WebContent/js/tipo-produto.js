@@ -12,6 +12,7 @@ $( "[id*='excluir']" ).click(function(event) {
     var data = $(event.delegateTarget).data();
 	var id = data.recordId; 
 	var descricao = data.recordDescricao;
+	console.log('Teste')
 	swal({
 		  title: 'Excluir?',
 		  text: "Deseja excluir esse registro? (" + descricao + ")",

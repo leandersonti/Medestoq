@@ -6,7 +6,11 @@
 <div class="container">
      
 <div class="card">
+<<<<<<< HEAD
   <div class="card-header">Movimentos</div>
+=======
+  <div class="card-header">Movimento</div>
+>>>>>>> branch 'master' of http://10.22.1.119/gitlab/tre-sti/medestoq.git
   <div class="card-body">
   
     <table id="tbmovimento" class="table table-sm table-hover">
@@ -20,6 +24,28 @@
 		    </th> 
 		</tr>
 	</thead>
+	
+			 <!-- Modal -->
+		<div class="modal fade" id="situacaomovi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Situação</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		            <div id="situacao"> </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+   
+	
 	<tbody>
 	<s:iterator value="lstMovimento">
 		<tr id="tr${id}">
@@ -27,8 +53,11 @@
 			<td><s:property value="isRecebimento"/></td>
 			<td><s:property value="motivo"/></td>		
 			<td>  		    
-				   <a href="frmEditar?eleicao.id=${id}" id="idedit" class="btn btn-sm btn-secondary" role="button">
-						<i class="fa fa-search" aria-hidden="true"></i>
+			
+				   <a href="#" id="#situacao" class="btn btn-sm btn-secondary" data-toggle="modal" data-itemid="${id}" data-target="#situacaomovi">
+				   <i class="fa fa-search" aria-hidden="true"></i>
+					
+				   
 				   </a>
 				
 				<a href="#" id="excluir${id}" class="btn btn-sm btn-danger" role="button" data-record-id="${id}" 				     
@@ -84,6 +113,22 @@ $(document).ready(function() {
 			})
 	  });
 });
+
+// ------- MODAL PARA CONSULTAR COMANDA ---------------------
+$('#situacaomovi').on('show.bs.modal', function (event) {
+	  var href = $(event.relatedTarget)
+	  var id = href.data('itemid') 
+	  var vUrl = "getBeanLimpo?mov.id="+id;
+	  $.ajax({
+		    url: vUrl,
+		    dataType: 'html',
+		    success: function(data) {
+	           $('#situacao').html(data);
+		    }
+		});
+	});
+	
+
 </script>
 
 <jsp:include page = "/mainfooter.inc.jsp" />

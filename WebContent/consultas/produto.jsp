@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<s:set var="product">active</s:set>
 <jsp:include page = "/mainhead.inc.jsp" />
 
 
@@ -42,7 +43,7 @@
 	</thead>
 	<tbody>
 	<s:iterator value="lstProduto">
-		<tr id="tr${id}" class="${estilo}"> 
+		<tr id="tr${id}" class="table-${estilo}"> 
 		    <td><s:property value="id"/></td>
 			<td><s:property value="descricao"/></td>
 			<td><s:property value="%{getText('format.date',{dtValidade})}"/></td>
