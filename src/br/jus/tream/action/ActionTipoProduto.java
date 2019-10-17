@@ -28,7 +28,7 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/tipo-produto.jsp"),
 			@Result(name = "error", location = "/result.jsp")}
-	   , interceptorRefs = @InterceptorRef("authStack")
+	  , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listar() {
 		try {
@@ -64,12 +64,15 @@ public class ActionTipoProduto extends ActionSupport{
 	
 	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmTipoProduto.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp")}
-	 , interceptorRefs = @InterceptorRef("authStack")
-	)
+	, interceptorRefs = @InterceptorRef("authStack")
+	)	
 	public String doFrmEditar() {
-		try {
-			this.tipoproduto = dao.getBean(this.tipoproduto.getId());
+		try {			
+			
+			this.tipoproduto = TipoProdutoDAOImpl.getInstance().getBean(this.tipoproduto.getId());
+			
 		} catch (Exception e) {
+			e.printStackTrace();
 			addActionError(getText("frmsetup.error") + " Error: " + e.getMessage());
 			return "error";
 		}
@@ -80,7 +83,7 @@ public class ActionTipoProduto extends ActionSupport{
 			@Result(name = "error", location = "/pages/resultAjax.jsp")}
 	  , interceptorRefs = @InterceptorRef("authStack")
 	)
-	public String doAdicionar() {
+	public String doAdicionar() { 
 		BeanResult beanResult = new BeanResult();
 		try {
 				beanResult.setRet(dao.adicionar(tipoproduto));
@@ -166,4 +169,15 @@ public class ActionTipoProduto extends ActionSupport{
 	public void setResult(BeanResult result) {
 		this.result = result;
 	}
+
+	public TipoProduto getTipoproduto() {
+		return tipoproduto;
+	}
+
+	public void setTipoproduto(TipoProduto tipoproduto) {
+		this.tipoproduto = tipoproduto;
+	}
+	
+	
+	
 }
