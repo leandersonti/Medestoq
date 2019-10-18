@@ -176,7 +176,7 @@ public class ActionMovimento extends ActionSupport{
 			@Result(name = "error", location = "/pages/error.jsp") })
 	public String getBeanLimpo() {
 		try {
-			System.out.println("entrei aqui");
+			
 			this.mov = dao.getBean(this.mov.getId());
 		} catch (Exception e) {
 			addActionError(getText("getbean.error"));

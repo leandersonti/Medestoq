@@ -6,11 +6,8 @@
 <div class="container">
      
 <div class="card">
-<<<<<<< HEAD
+
   <div class="card-header">Movimentos</div>
-=======
-  <div class="card-header">Movimento</div>
->>>>>>> branch 'master' of http://10.22.1.119/gitlab/tre-sti/medestoq.git
   <div class="card-body">
   
     <table id="tbmovimento" class="table table-sm table-hover">
@@ -50,7 +47,14 @@
 	<s:iterator value="lstMovimento">
 		<tr id="tr${id}">
 		    <td><s:property value="%{getText('format.date',{dtMovimento})}"/></td>
-			<td><s:property value="isRecebimento"/></td>
+			<td>
+				<s:if test="isRecebimento == 1">
+					Entrada
+				</s:if>
+				<s:else>
+					Saida
+				</s:else>
+			</td>
 			<td><s:property value="motivo"/></td>		
 			<td>  		    
 			

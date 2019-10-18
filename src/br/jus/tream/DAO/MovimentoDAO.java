@@ -15,6 +15,8 @@ public interface MovimentoDAO {
 	
 	public int atualizarEstoque(Movimento movimento) throws Exception;
 	
+	public int retornaEstoque(Movimento movimento) throws Exception;
+	
 	public int atualizar (Movimento movimento) throws Exception;
 	
 	public int adicionarItem (Movimento movimento) throws Exception;

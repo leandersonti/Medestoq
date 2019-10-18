@@ -104,6 +104,8 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 			ret = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			this.retornaEstoque(movimento);
 		}
 		return ret;
 	}
@@ -122,6 +124,31 @@ public class MovimentoDAOImpl implements MovimentoDAO {
 					p.setQtdEstoque(p.getQtdEstoque() + item.getQtdItem());
 				else
 					p.setQtdEstoque(p.getQtdEstoque() - item.getQtdItem());
+
+				daoProd.atualizar(p);
+			}
+
+			ret = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
+	@Override
+	public int retornaEstoque(Movimento movimento) throws Exception {
+		int ret = 0;
+		try {
+			ProdutoDAO daoProd = ProdutoDAOImpl.getInstance();
+
+			for (ItemMovimento item : movimento.getItens()) {
+				Produto p = new Produto();
+				p = daoProd.getBean(item.getProduto().getId());
+
+				if (movimento.getIsRecebimento() == 1)
+					p.setQtdEstoque(p.getQtdEstoque() - item.getQtdItem());
+				else
+					p.setQtdEstoque(p.getQtdEstoque() + item.getQtdItem());
 
 				daoProd.atualizar(p);
 			}

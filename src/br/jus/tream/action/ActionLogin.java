@@ -52,10 +52,10 @@ public class ActionLogin extends ActionSupport implements SessionAware{
 	  return "success";
 }
 	
-  @Action(value = "process", results = {@Result(name = "success", location = "%{endpoint}", type = "redirect"),
+  @Action(value = "process", results = {@Result(name = "success", location = "/main.jsp"),
 	        @Result(name = "error", location = "/frmLogin.jsp")})
 	public String getLogin(){  
-		try{					
+		try{	
 			
 			this.beanlogin = LoginAD.getInstance().getLogin(this.getUsername(), this.getUserpass());
 		    if(this.beanlogin.getLogou()){ 		    	
