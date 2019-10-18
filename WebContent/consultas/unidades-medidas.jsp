@@ -46,7 +46,6 @@
 </div>
 
    
-
 <jsp:include page = "/javascripts.jsp" />
 
 
