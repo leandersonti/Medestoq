@@ -46,7 +46,14 @@ $("#btnSave").click(function() {
 						data: frm
 				    }).done(function( data ) {
 				    	//if(data.ret==1)
-				    		swal(URL, data.mensagem, data.type);
+				    		swal(URL, data.mensagem, data.type).then((result) => {
+				    			
+				    			$(':input','#frmTipoProduto')
+				    			  .not(':button, :submit, :reset, :hidden')
+				    			  .val('')
+				    			  .removeAttr('checked')
+				    			  .removeAttr('selected');
+				    		});
 				    	//else 
 				    		//swal(URL, data.mensagem, "error");
 					}).fail(function() {

@@ -55,7 +55,14 @@ $(document).ready(function() {
 							data: frm
 					    }).done(function( data ) {					    	
 					    	if(data.ret==1)
-					    		swal(URL, data.mensagem, "success");
+					    		swal(URL, data.mensagem, "success").then((result) => {
+					    			
+					    			$(':input','#frmUnidadeMedida')
+					    			  .not(':button, :submit, :reset, :hidden')
+					    			  .val('')
+					    			  .removeAttr('checked')
+					    			  .removeAttr('selected');
+					    		});
 					    	else 
 					    		swal(URL, data.mensagem, "error");
 						}).fail(function() {

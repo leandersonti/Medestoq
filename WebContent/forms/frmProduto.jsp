@@ -99,7 +99,13 @@ $("#btnSave").click(function() {
 						data: frm
 				    }).done(function( data ) {
 				    	//if(data.ret==1)
-				    		swal(URL, data.mensagem, data.type);
+				    		swal(URL, data.mensagem, data.type).then((result) => {
+				    			
+				    			$('#frmProduto').each (function(){
+				    				  this.reset();
+				    				});
+				    			
+				    		});
 				    	//else 
 				    		//swal(URL, data.mensagem, "error");
 					}).fail(function() {
