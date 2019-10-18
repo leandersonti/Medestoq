@@ -16,7 +16,7 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/">MedEstoq<span class="sr-only">(current)</span></a>
           </li>
           
-           <li class="nav-item dropdown">
+           <li class="nav-item dropdown ${product}">
 	            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produto</a>
 	            <div class="dropdown-menu" aria-labelledby="dropdown01">
 	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/frmCad">Cadastrar</a>

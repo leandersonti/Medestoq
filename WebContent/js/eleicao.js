@@ -5,42 +5,14 @@ $(document).ready(function() {
 		   });
     }
 	
-	// CLICK SETAR CONTEXTO
-	$( "[id*='setcontext']" ).click(function(event) {
-	    var data = $(event.delegateTarget).data();
-		var id = data.recordId;  
-		var turno = data.recordTurno;
-		var dt = data.recordData;
-		swal({
-			  title: 'Ativar Eleição?',
-			  text: "Deseja tornar a eleição " + dt + " turno " + turno + " ativa?",
-			  icon: 'warning',
-			  buttons: [true, "Sim ativar!"]
-			}).then((result) => {
-			  if (result) {
-			       $.getJSON({
-					  url: "setcontexto?eleicao.id="+id
-				   }).done(function( data ) {
-				    	  if (data.ret==1){	    		  
-				    		  $( "span:contains('Ativo')" ).attr('class', 'badge badge-pill badge-secondary');
-				    		  $( "span:contains('Ativo')" ).text("Desativado");
-				    		  $('#ele'+id).text("Ativo");
-				    		  $('#ele'+id).attr('class', 'badge badge-pill badge-success');
-				    	  }
-				    	  else
-				    		 swal("Ativar Eleição", data.mensagem, "error");
-					}).fail(function() {
-						swal("Ativar Eleição", "Ocorreu um erro ao realizar esse procedimento", "error");
-					});
-			   }
-		  })
-	   });	
+
 	
 	// CLICK DO BOTÃO EXCLUIR
 	$( "[id*='excluir']" ).click(function(event) {
 	    var data = $(event.delegateTarget).data();
 		var id = data.recordId; 
 		var descricao = data.recordDescricao;
+		cosole.log("testes")
 		swal({
 			  title: 'Excluir?',
 			  text: "Deseja excluir esse registro? (" + descricao + ")",
@@ -49,20 +21,22 @@ $(document).ready(function() {
 			}).then((result) => {
 			  if (result) {
 			       $.getJSON({
-					  url: "remover?eleicao.id="+id
+					  url: "remover?und.id="+id
 				   }).done(function( data ) {
-				    	  //if (data.ret==1){
-				    		//  $('#tr'+id).fadeOut(); 
+				    	  if (data.ret==1){
+				    		  $('#tr'+id).fadeOut(); 
 				    		  swal("Remover", data.mensagem, data.type);
-				    	  //}
-				    	  //else
-				    		//  swal("Remover", "Ocorreu um erro ao remover", data.type);
+				    	  }
+				    	  else
+				    		  swal("Remover", "Ocorreu um erro ao remover", data.type);
 					}).fail(function() {
 						swal("Remover", "Ocorreu um erro ao remover", "error");
 					});
 			   }
 			})
 	  });
+	
+	
 	
 	// CLICK DO BOTÃO SAVE	
 	$("#btnSave").click(function() {
@@ -95,8 +69,8 @@ $(document).ready(function() {
 	 	}); 
 	
 	function verificaDados(){
-	    if ($("#frmEleicao")[0].checkValidity()===false){
-	    	$("#frmEleicao")[0].classList.add('was-validated');
+	    if ($("#frmUnidadeMedida")[0].checkValidity()===false){
+	    	$("#frmUnidadeMedida")[0].classList.add('was-validated');
 	    	return false;
 	    }else 
 		   return true;

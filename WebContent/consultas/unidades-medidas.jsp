@@ -49,9 +49,17 @@
 
 <jsp:include page = "/javascripts.jsp" />
 
-<script src="${pageContext.request.contextPath}/js/eleicao.js" charset="utf-8"></script>
 
 <script type="text/javascript">
+
+$(document).ready(function() {
+	if($("#tbeleicao").length){
+		   $('#tbeleicao').dataTable( {
+		        "order": [[ 0, "des" ],[ 1, "des" ]]
+		   });
+    }
+	
+});	
 
 // CLICK DO BOTÃO EXCLUIR
 $( "[id*='excluir']" ).click(function(event) {
