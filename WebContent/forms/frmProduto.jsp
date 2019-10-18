@@ -28,7 +28,7 @@
 						<input type="number" class="form-control" id="qtdminima" name="produto.qtdMinima"	placeholder="Informe a quantidade mínima" value="${produto.qtdMinima}">
 					</div>	
 					
-					<div class="ccol-md-4 mb-4">
+					<div class="col-md-4 mb-4">
 						<label for="dtValidade">*Data Validade:</label> 
 						<input type="date" class="form-control" name="produto.dtValidade" id="dtValidade" value="<s:property value="%{getText('format.dtUSA',{produto.dtValidade})}"/>" required>
 						<div class="invalid-feedback">Por favor, informe a data de início.</div>
