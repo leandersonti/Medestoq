@@ -21,7 +21,7 @@
 	            <div class="dropdown-menu" aria-labelledby="dropdown01">
 	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/frmCad">Cadastrar</a>
 	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/listar">Listar</a>	              
-	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/#">Consultar</a>
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/consultar">Consultar</a>
 	            </div>
 	          </li>
           
