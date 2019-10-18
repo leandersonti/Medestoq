@@ -16,6 +16,59 @@
 					<div class="invalid-feedback">Por favor, informe uma descricao.</div>
 				</div>
 				
+					<div class="form-row">
+						<div class="col-md-4 mb-4">
+							<label for="qtdestoque">Quantidade Estoque</label> 
+							<input type="number" class="form-control" id="qtdestoque" name="produto.qtdEstoque" placeholder="Informe quantidade do estoque" value="${produto.qtdEstoque}">
+						</div>	
+					
+					
+					<div class="col-md-4 mb-4">
+						<label for="qtdminima">Quantidade Mínima:</label> 
+						<input type="number" class="form-control" id="qtdminima" name="produto.qtdMinima"	placeholder="Informe a quantidade mínima" value="${produto.qtdMinima}">
+					</div>	
+					
+					<div class="ccol-md-4 mb-4">
+						<label for="dtValidade">*Data Validade:</label> 
+						<input type="date" class="form-control" name="produto.dtValidade" id="dtValidade" value="<s:property value="%{getText('format.dtUSA',{produto.dtValidade})}"/>" required>
+						<div class="invalid-feedback">Por favor, informe a data de início.</div>
+					</div>
+						
+				</div>	
+				
+				<div class="form-row">
+						<div class="col-md-4 mb-4">
+						<label for="unidadeMedida.id">Unidade Medida :</label> 								
+							<s:select label="Tipo" headerKey="-1"
+									headerValue="--Selecione--"
+									list="lstunidadeMedida" listKey="id"
+									listValue="descricao"
+									name="produto.unidadeMedida.id"  id="unidadeMedida.id" theme="simple"
+									cssClass="form-control" />  
+						</div>
+						
+						<div class="col-md-4 mb-4">
+						<label for="grupo.id">Grupo :</label> 								
+							<s:select label="Tipo" headerKey="-1"
+									headerValue="--Selecione--"
+									list="lstgrupo" listKey="id"
+									listValue="descricao"
+									name="produto.grupo.id"  id="grupo.id" theme="simple"
+									cssClass="form-control" />  
+						</div>	
+						
+						<div class="col-md-4 mb-4">
+						<label for="tipo.id">Tipo :</label> 								
+							<s:select label="Tipo" headerKey="-1"
+									headerValue="--Selecione--"
+									list="lsttipo" listKey="id"
+									listValue="descricao"
+									name="produto.tipo.id"  id="tipo.id" theme="simple"
+									cssClass="form-control" />  
+						</div>		
+				
+				</div>
+				
 				<button class="btn btn-success" id="btnSave" type="button">Enviar</button>
 			</form>
 		</div>

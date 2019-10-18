@@ -11,60 +11,50 @@ import org.apache.struts2.convention.annotation.ResultPath;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import br.jus.tream.DAO.GrupoProdutoDAOImpl;
 import br.jus.tream.DAO.ProdutoDAO;
 import br.jus.tream.DAO.ProdutoDAOImpl;
+import br.jus.tream.DAO.TipoProdutoDAOImpl;
+import br.jus.tream.DAO.UnidadeMedidaDAOImpl;
 import br.jus.tream.dominio.BeanResult;
+import br.jus.tream.dominio.GrupoProduto;
 import br.jus.tream.dominio.Produto;
+import br.jus.tream.dominio.TipoProduto;
+import br.jus.tream.dominio.UnidadeMedida;
 
 @SuppressWarnings("serial")
 @Namespace("/produto")
 @ResultPath(value = "/")
 @ParentPackage(value = "default")
-public class ActionProduto extends ActionSupport{
+public class ActionProduto extends ActionSupport {
 	private List<Produto> lstProduto;
+	private List<UnidadeMedida> lstunidadeMedida;
+	private List<GrupoProduto> lstgrupo;
+	private List<TipoProduto> lsttipo;
+
 	private Produto produto;
 	private BeanResult result;
 	private final static ProdutoDAO dao = ProdutoDAOImpl.getInstance();
-	
+
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/produto.jsp"),
-			@Result(name = "error", location = "/result.jsp")}
-	//,interceptorRefs = @InterceptorRef("authStack")
-	)
+			@Result(name = "error", location = "/result.jsp") }, interceptorRefs = @InterceptorRef("authStack"))
 	public String listar() {
 		try {
-			if (produto != null ) {
-			this.lstProduto = dao.listar(produto.getTipo().getId(), produto.getGrupo().getId());
-					}
-			
-				
+			if (produto != null) {
+				this.lstProduto = dao.listar(produto.getTipo().getId(), produto.getGrupo().getId());
+			}
+
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
 			return "error";
 		}
 		return "success";
 	}
-	
-	@Action(value = "consultar", results = { @Result(name = "success", location = "/consultas/produto-consultar.jsp"),
-			@Result(name = "error", location = "/result.jsp")}
-	//,interceptorRefs = @InterceptorRef("authStack")
-	)
-	public String consultar() {
-		try {
-			
-			if (produto != null ) {
-				this.lstProduto = dao.listar(produto.getDescricao());
-					}
-			
-		} catch (Exception e) {
-			addActionError(getText("listar.error"));
-			return "error";
-		}
-		return "success";
-	}
-	
-	@Action(value = "listarJsonByTipoGrupo", results = { @Result(name = "success", type = "json", params = { "root", "lstProduto" }),
+
+	@Action(value = "listarJsonByTipoGrupo", results = {
+			@Result(name = "success", type = "json", params = { "root", "lstProduto" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	//, interceptorRefs = @InterceptorRef("authStack")
+	// , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listarByTipoGrupo() {
 		try {
@@ -75,10 +65,11 @@ public class ActionProduto extends ActionSupport{
 		}
 		return "success";
 	}
-	
-	@Action(value = "listarJson", results = { @Result(name = "success", type = "json", params = { "root", "lstProduto" }),
+
+	@Action(value = "listarJson", results = {
+			@Result(name = "success", type = "json", params = { "root", "lstProduto" }),
 			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	//, interceptorRefs = @InterceptorRef("authStack")
+	// , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listarJson() {
 		try {
@@ -90,12 +81,12 @@ public class ActionProduto extends ActionSupport{
 		return "success";
 	}
 
-	@Action(value = "listarCbx", results = { @Result(name = "success", type = "json", params = { "root", "LstProduto" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	//, interceptorRefs = @InterceptorRef("authStack")
-	)
+	@Action(value = "listarCbx", results = {
+			@Result(name = "success", type = "json", params = { "root", "LstProduto" }),
+			@Result(name = "error", location = "/pages/resultAjax.jsp") }, interceptorRefs = @InterceptorRef("authStack"))
 	public String listarCdx() {
 		try {
+
 			this.lstProduto = dao.listarCbx();
 		} catch (Exception e) {
 			addActionError(getText("listar.error"));
@@ -103,21 +94,34 @@ public class ActionProduto extends ActionSupport{
 		}
 		return "success";
 	}
-	
+
 	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmProduto.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp") }
-	 //, interceptorRefs = @InterceptorRef("authStack")
+	// , interceptorRefs = @InterceptorRef("authStack")
 	)
-	public String frmProduto() {	
+	public String frmProduto() {
+		try {
+			this.lstProduto = dao.listar();
+			this.lsttipo = TipoProdutoDAOImpl.getInstance().listar();
+			this.lstunidadeMedida = UnidadeMedidaDAOImpl.getInstance().listar();
+			this.lstgrupo = GrupoProdutoDAOImpl.getInstance().listar();
+		} catch (Exception e) {
+			addActionError(getText("listar.error"));
+			return "error";
+		}
 		return "success";
 	}
-	
+
 	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmProduto.jsp"),
-			@Result(name = "error", location = "/pages/error.jsp")}
-	 //, interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/error.jsp") }
+	// , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doFrmEditar() {
 		try {
+			this.lstProduto = dao.listar();
+			this.lsttipo = TipoProdutoDAOImpl.getInstance().listar();
+			this.lstunidadeMedida = UnidadeMedidaDAOImpl.getInstance().listar();
+			this.lstgrupo = GrupoProdutoDAOImpl.getInstance().listar();
 			this.produto = dao.getBean(this.produto.getId());
 		} catch (Exception e) {
 			addActionError(getText("frmsetup.error") + " Error: " + e.getMessage());
@@ -125,77 +129,70 @@ public class ActionProduto extends ActionSupport{
 		}
 		return "success";
 	}
-	
+
 	@Action(value = "adicionar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	  //, interceptorRefs = @InterceptorRef("authStack")
-	)
+			@Result(name = "error", location = "/pages/resultAjax.jsp") }, interceptorRefs = @InterceptorRef("authStack"))
 	public String doAdicionar() {
 		BeanResult beanResult = new BeanResult();
 		try {
-				beanResult.setRet(dao.adicionar(produto));
-				if (beanResult.getRet() == 1) {
-					beanResult.setMensagem(getText("inserir.sucesso"));
-					beanResult.setType("success");
-				}
-				else {
-					beanResult.setMensagem(getText("inserir.error"));
-					beanResult.setType("error");
-				}
+			beanResult.setRet(dao.adicionar(produto));
+			if (beanResult.getRet() == 1) {
+				beanResult.setMensagem(getText("inserir.sucesso"));
+				beanResult.setType("success");
+			} else {
+				beanResult.setMensagem(getText("inserir.error"));
+				beanResult.setType("error");
+			}
 		} catch (Exception e) {
-			    addActionError(getText("alterar.error") + " Error: " + e.getMessage());
-			  //result.setMensagem(getText("inserir.error") + " Error: " + e.getMessage());
+			addActionError(getText("alterar.error") + " Error: " + e.getMessage());
+			// result.setMensagem(getText("inserir.error") + " Error: " + e.getMessage());
 			return "error";
 		}
 		this.result = beanResult;
 		return "success";
 	}
-	
+
 	@Action(value = "atualizar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp") }
-	  //, interceptorRefs = @InterceptorRef("authStack")
-	)
+			@Result(name = "error", location = "/pages/resultAjax.jsp") }, interceptorRefs = @InterceptorRef("authStack"))
 	public String doAtualizar() {
 		BeanResult beanResult = new BeanResult();
 		try {
 			beanResult.setRet(dao.atualizar(this.produto));
-				if (beanResult.getRet()==1) {
-					beanResult.setMensagem(getText("alterar.sucesso"));
-					beanResult.setType("success");
-				}else {
-					beanResult.setMensagem(getText("alterar.error")); 
-					beanResult.setType("error");
-				}
+			if (beanResult.getRet() == 1) {
+				beanResult.setMensagem(getText("alterar.sucesso"));
+				beanResult.setType("success");
+			} else {
+				beanResult.setMensagem(getText("alterar.error"));
+				beanResult.setType("error");
+			}
 		} catch (Exception e) {
 			addActionError(getText("alterar.error") + " Error: " + e.getMessage());
 			return "error";
 		}
-		 this.result = beanResult;
+		this.result = beanResult;
 		return "success";
 	}
-	
+
 	@Action(value = "remover", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}
-	   	//	, interceptorRefs = @InterceptorRef("authStack")
-	)
+			@Result(name = "error", location = "/pages/resultAjax.jsp") }, interceptorRefs = @InterceptorRef("authStack"))
 	public String doRemover() {
 		BeanResult beanResult = new BeanResult();
 		beanResult.setRet(0);
-		try {	
-				produto = dao.getBean(this.produto.getId());
-				
-				beanResult.setRet(dao.remover(this.produto));
-				beanResult.setMensagem(getText("remover.sucesso"));
-				beanResult.setType("success");
-		 } catch (Exception e) {
+		try {
+			produto = dao.getBean(this.produto.getId());
+
+			beanResult.setRet(dao.remover(this.produto));
+			beanResult.setMensagem(getText("remover.sucesso"));
+			beanResult.setType("success");
+		} catch (Exception e) {
 			addActionError(getText("remover.error") + " Error: " + e.getMessage());
-			//r.setMensagem(getText("remover.error") + " Error: " + e.getMessage());
+			// r.setMensagem(getText("remover.error") + " Error: " + e.getMessage());
 			return "error";
 		}
 		this.result = beanResult;
-	  return "success";
-	}	 
-	
+		return "success";
+	}
+
 	public List<Produto> getLstProduto() {
 		return lstProduto;
 	}
@@ -218,6 +215,34 @@ public class ActionProduto extends ActionSupport{
 
 	public void setResult(BeanResult result) {
 		this.result = result;
+	}
+
+	public List<UnidadeMedida> getLstunidadeMedida() {
+		return lstunidadeMedida;
+	}
+
+	public void setLstunidadeMedida(List<UnidadeMedida> lstunidadeMedida) {
+		this.lstunidadeMedida = lstunidadeMedida;
+	}
+
+	public List<GrupoProduto> getLstgrupo() {
+		return lstgrupo;
+	}
+
+	public void setLstgrupo(List<GrupoProduto> lstgrupo) {
+		this.lstgrupo = lstgrupo;
+	}
+
+	public List<TipoProduto> getLsttipo() {
+		return lsttipo;
+	}
+
+	public void setLsttipo(List<TipoProduto> lsttipo) {
+		this.lsttipo = lsttipo;
+	}
+
+	public static ProdutoDAO getDao() {
+		return dao;
 	}
 
 }
