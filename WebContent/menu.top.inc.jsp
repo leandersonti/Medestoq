@@ -16,9 +16,14 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/">MedEstoq<span class="sr-only">(current)</span></a>
           </li>
           
-          <li class="nav-item ${product}">
-             <a class="nav-link" href="${pageContext.request.contextPath}/produto/listar" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Produtos</a>
-          </li>
+           <li class="nav-item dropdown">
+	            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produto</a>
+	            <div class="dropdown-menu" aria-labelledby="dropdown01">
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/frmCad">Cadastrar</a>
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/listar">Listar</a>	              
+	              <a class="dropdown-item" href="${pageContext.request.contextPath}/produto/#">Consultar</a>
+	            </div>
+	          </li>
           
           <li class="nav-item ${moviment}">
              <a class="nav-link" href="${pageContext.request.contextPath}/movimento/frmCad" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Movimento</a>	              	                          		             		                               	              	            
