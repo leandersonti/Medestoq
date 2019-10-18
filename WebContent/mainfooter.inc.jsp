@@ -12,30 +12,7 @@
 		    </div>
 		</div>
  
- 
-   <footer class="footer bg-dark text-white">
-      <div class="container">
-         <span class="text-white">Controle de Estoque da COMED
-      	<%
-	     BeanLogin s = (BeanLogin)session.getAttribute("login");
-		  try{
-			  if (!s.getNome().equals("")){
-				if (s.getIsAmbienteProducao()){ %>
-	                   | <span class="badge badge-pill badge-success">Banco Produção</span>
-	                <%}else{%>
-	                   | <span class="badge badge-danger">Banco Homologa</span>
-	               <%}
-			   }	  
-			}catch (Exception e){ %>
-			       <span class="badge badge-pill btn-warning"><i class="fa fa-lock" aria-hidden="true"></i> Sessão não iniciada</span>
-		    <%	 
-		 	}
-			%>				
-         </span>
-        
-      </div>
-    </footer>
-    
+     
     
    </body>
 </html>
