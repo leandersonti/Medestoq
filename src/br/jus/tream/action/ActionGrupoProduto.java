@@ -27,8 +27,8 @@ public class ActionGrupoProduto extends ActionSupport{
 	private final static GrupoProdutoDAO dao = GrupoProdutoDAOImpl.getInstance();
 	
 	@Action(value = "listar", results = { @Result(name = "success", location = "/consultas/grupos.jsp"),
-			@Result(name = "error", location = "/result.jsp")}, 
-			interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/result.jsp")}
+	//, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String listar() {
 		try {

@@ -50,6 +50,21 @@ public class ActionProduto extends ActionSupport {
 		}
 		return "success";
 	}
+	
+	@Action(value = "consultar", results = { @Result(name = "success", location = "/consultas/produto-consultar.jsp"),
+			@Result(name = "error", location = "/result.jsp") }, interceptorRefs = @InterceptorRef("authStack"))
+	public String consultar() {
+		try {
+			if (produto != null) {
+				this.lstProduto = dao.listar(produto.getDescricao());
+			}
+
+		} catch (Exception e) {
+			addActionError(getText("listar.error"));
+			return "error";
+		}
+		return "success";
+	}
 
 	@Action(value = "listarJsonByTipoGrupo", results = {
 			@Result(name = "success", type = "json", params = { "root", "lstProduto" }),
