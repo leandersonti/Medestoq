@@ -55,16 +55,16 @@ public class ActionGrupoProduto extends ActionSupport{
 	}
 	
 	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmGrupoProduto.jsp"),
-			@Result(name = "error", location = "/pages/error.jsp") }, 
-			interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/error.jsp") }
+	//,		interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String frmCadEleicao() {	
 		return "success";
 	}
 	
 	@Action(value = "frmEditar", results = { @Result(name = "success", location = "/forms/frmGrupoProduto.jsp"),
-			@Result(name = "error", location = "/pages/error.jsp")}, 
-	 interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/error.jsp")}
+	//, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String doFrmEditar() {
 		try {
@@ -77,8 +77,8 @@ public class ActionGrupoProduto extends ActionSupport{
 	}
 	
 	@Action(value = "adicionar", results = { @Result(name = "success", type = "json", params = { "root", "result" }),
-			@Result(name = "error", location = "/pages/resultAjax.jsp")}, 
-	interceptorRefs = @InterceptorRef("authStack")
+			@Result(name = "error", location = "/pages/resultAjax.jsp")}
+	//, interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String Adicionar() {
 		BeanResult beanResult = new BeanResult();

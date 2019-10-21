@@ -8,4 +8,7 @@
     <link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/chosen.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/buttons.dataTables.min.css" rel="stylesheet">
+    
+    
     

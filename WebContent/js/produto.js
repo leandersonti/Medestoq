@@ -1,14 +1,40 @@
 $(document).ready(function() {
 	
+	
+
+
 	CarregaTipo();
 	CarregaGrupo();
 	
 	if($("#tbproduto").length){
 		   $('#tbproduto').dataTable( {
+			   dom: 'Bfrtip',
+			   buttons: [{
+				      extend: 'excelHtml5',
+				     
+				      customize: function (xlsx) {
+				        var sheet = xlsx.xl.worksheets['sheet1.xml'];
+				        $('row c[r^="F"]', sheet).each( function () {
+		                    // Get the value
+		                    if ( $('is t', this).text() == 'Estoque baixo' ) {
+		                    	$(this).attr( 's', "23" );
+		                    } else if ( $('is t', this).text() == 'Vencimento em breve' ) {
+		                        $(this).attr( 's', '17' );
+		                    } else if ( $('is t', this).text() == 'Vencido' ) {
+		                        $(this).attr( 's', '10' );
+		                    }
+		                    
+		                    
+		                });
+				        
+				      }
+				  }],
+		        
 		        "order": [[ 0, "des" ],[ 1, "des" ]]
 	  });
     }
 });	
+
 
 
 	// CLICK DO BOTÃO EXCLUIR
@@ -38,6 +64,25 @@ $(document).ready(function() {
 			   }
 			})
 	  });
+	
+
+	    var buttonCommon = {
+	        exportOptions: {
+	            format: {
+	                body: function ( data, row, column, node ) {
+	                    // Strip $ from salary column to make it numeric
+	                    return column === 5 ?
+	                        data.replace( /[$,]/g, '' ) :
+	                        data;
+	                }
+	            }
+	        }
+	    };
+	 
+	    
+	
+	
+	
 	
 	
 	
