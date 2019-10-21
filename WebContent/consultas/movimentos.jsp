@@ -56,15 +56,17 @@
 				</s:else>
 			</td>
 			<td><s:property value="motivo"/></td>		
-			<td>  		    
+			<td>  		     
 			
 				   <a href="#" id="#situacao" class="btn btn-sm btn-secondary" data-toggle="modal" data-itemid="${id}" data-target="#situacaomovi">
-				   <i class="fa fa-search" aria-hidden="true"></i>
-					
-				   
+				   <i class="fa fa-search" aria-hidden="true"></i>									  
 				   </a>
+				   
+				   <a href="frmEditar?mov.id=${id}" id="idedit" class="btn btn-sm btn-warning" role="button">
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				    </a>
 				
-				<a href="#" id="excluir${id}" class="btn btn-sm btn-danger" role="button" data-record-id="${id}" 				     
+					<a href="#" id="excluir${id}" class="btn btn-sm btn-danger" role="button" data-record-id="${id}" 				     
 				     data-record-descricao="${descricao}">
 					  		<i class="fa fa-trash-o" aria-hidden="true"></i>
 				    </a>

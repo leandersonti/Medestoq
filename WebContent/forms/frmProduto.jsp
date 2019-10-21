@@ -19,7 +19,7 @@
 					<div class="form-row">
 						<div class="col-md-4 mb-4">
 							<label for="qtdestoque">Quantidade Estoque</label> 
-							<input type="number" class="form-control" id="qtdestoque" name="produto.qtdEstoque" placeholder="Informe quantidade do estoque" value="${produto.qtdEstoque}">
+							<input type="number" class="form-control" id="qtdestoque" name="produto.qtdEstoque" placeholder="Informe quantidade do estoque" <s:if test='produto.id != null'>disabled</s:if> value="${produto.qtdEstoque}">
 						</div>	
 					
 					

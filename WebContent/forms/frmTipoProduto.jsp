@@ -13,7 +13,7 @@
 	
 				<div class="form-row">
 					<label for="descricao">Descrição:</label> 
-					<input type="text" class="form-control" id="descricao" name="tipoproduto.descricao"	placeholder="Informe uma descrição" value="" required>
+					<input type="text" class="form-control" id="descricao" name="tipoproduto.descricao"	placeholder="Informe uma descrição" value="${tipoproduto.descricao}" required>
 					<div class="invalid-feedback">Por favor, informe uma descricao.</div>
 				</div>
 				<br>

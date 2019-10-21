@@ -36,17 +36,24 @@
 						<div class="invalid-feedback">Por favor, informe uma descricao.</div>
 					</div>					 
 				</s:if>	  
-				<s:else>
+				<s:else>				
+				<label for="descricao">*Tipo Movimento:&nbsp;&nbsp;</label>
+						<s:if test="mov.isRecebimento == 1">
+							<span class="badge badge-pill badge-success">Entrada</span>
+						</s:if> 
+						<s:else> 
+							<span class="badge badge-pill badge-danger">Saida</span>
+						</s:else>  			 	
 					<div class="form-row">
 						<label for="descricao">*Descricao:</label> 
 						<%-- <input type="text" class="form-control" name="mov.motivo" value="${mov.motivo}" disabled> --%>
 						<textarea class="form-control" name="mov.motivo" rows="5" cols="20" placeholder="Informe uma descrição" disabled>${mov.motivo}</textarea>						
 					</div>	
 				</s:else>					 
-				 									
+				 					 				 
 				  <div class="form-row">			    
 			    <table class="table table-sm">
-					  <thead>
+					  <thead> 
 					    <tr>
 					      <th scope="col">Produto</th>
 					      <th scope="col">Qtd</th>					      
