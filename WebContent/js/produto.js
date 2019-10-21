@@ -11,9 +11,12 @@ $(document).ready(function() {
 			   dom: 'Bfrtip',
 			   buttons: [{
 				      extend: 'excelHtml5',
-				     
+				      exportOptions: {
+		                    columns: [ 0, 1, 2, 3, 4, 5 ]
+		              },
 				      customize: function (xlsx) {
 				        var sheet = xlsx.xl.worksheets['sheet1.xml'];
+				        
 				        $('row c[r^="F"]', sheet).each( function () {
 		                    // Get the value
 		                    if ( $('is t', this).text() == 'Estoque baixo' ) {
