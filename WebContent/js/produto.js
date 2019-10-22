@@ -20,7 +20,7 @@ $(document).ready(function() {
 				        $('row c[r^="F"]', sheet).each( function () {
 		                    // Get the value
 		                    if ( $('is t', this).text() == 'Estoque baixo' ) {
-		                    	$(this).attr( 's', "23" );
+		                    	$(this).attr( 's', "22" );
 		                    } else if ( $('is t', this).text() == 'Vencimento em breve' ) {
 		                        $(this).attr( 's', '17' );
 		                    } else if ( $('is t', this).text() == 'Vencido' ) {
