@@ -112,7 +112,7 @@ public class ActionProduto extends ActionSupport {
 
 	@Action(value = "frmCad", results = { @Result(name = "success", location = "/forms/frmProduto.jsp"),
 			@Result(name = "error", location = "/pages/error.jsp") }
-	// , interceptorRefs = @InterceptorRef("authStack")
+	 , interceptorRefs = @InterceptorRef("authStack")
 	)
 	public String frmProduto() {
 		try {
